@@ -6,7 +6,8 @@
     <span>My App</span>
     <span class="example-spacer"></span>
     <span class="fs-6 mx-5">{{usuario.username}}</span>
-    <button mat-icon-button class="example-icon person-icon" aria-label="Example icon-button with heart icon">
+    <button mat-icon-button class="example-icon person-icon" aria-label="Example icon-button with heart icon"
+            (click)="userProfile()">
       <mat-icon>person</mat-icon>
     </button>
     <button mat-icon-button class="example-icon manage_accounts-icon" aria-label="Example icon-button with heart icon"

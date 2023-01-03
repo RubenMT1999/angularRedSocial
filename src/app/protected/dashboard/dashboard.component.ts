@@ -29,4 +29,8 @@ export class DashboardComponent {
     this.router.navigateByUrl('/profile/settings')
   }
 
+  userProfile(){
+    this.router.navigateByUrl('/profile/user')
+  }
+
 }

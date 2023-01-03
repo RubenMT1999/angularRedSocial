@@ -5,11 +5,13 @@ import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 
 @NgModule({
   declarations: [
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,
