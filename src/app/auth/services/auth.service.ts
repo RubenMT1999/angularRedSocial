@@ -1,8 +1,8 @@
-import { AuthResponse } from './../interfaces/interfaces';
+import { AuthResponse, RenovarToken, Usuario, RegistroStatus } from './../interfaces/interfaces';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, tap } from 'rxjs';
+import { catchError, map, of, tap, Observable, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,11 @@ import { catchError, map, of, tap } from 'rxjs';
 export class AuthService {
 
   private baseUrl: string = environment.baseUrl;
+  public user!:Usuario;
+
+  get usuario(){
+    return this.user;
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -23,9 +28,52 @@ export class AuthService {
 
     return this.http.post<AuthResponse>(url, body)
       .pipe(
-        map(resp => resp.token!= null),
+        tap( resp => {
+          if (resp.token){
+            localStorage.setItem('token', resp.token);
+          }
+        }),
+        map(resp => resp.token),
         catchError(err => of(false))
       )
-
   }
+
+
+  validarToken(): Observable<boolean>{
+    const url = `${this.baseUrl}/userLogged`;
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '');
+
+    return this.http.get<RenovarToken>(url, {headers})
+      .pipe(
+        map(resp => {
+          const lista = JSON.parse(JSON.stringify(resp));
+           this.user = {
+            username: lista[0].username,
+            roles: lista[0].roles
+          }; 
+
+          return resp!=null;
+        }),
+        catchError(err => of(false))
+      )
+  }
+
+
+  registro(email: string, password:string): Observable<boolean>{
+    const url = `${this.baseUrl}/user/create`;
+    const roles: string[] = ['ROLE_USER','ROLE_ADMIN'];
+    const body = {email, password, roles};
+
+    return this.http.post<RegistroStatus>(url,body)
+      .pipe(
+        map(res => {
+          console.log(res);
+          return res.status!=null
+        }),
+        catchError(err => of(false))
+      )
+  }
+
+
 }
