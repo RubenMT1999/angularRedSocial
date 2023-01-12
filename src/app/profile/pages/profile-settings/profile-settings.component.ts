@@ -37,23 +37,28 @@ export class ProfileSettingsComponent {
 
 /*   this.miFormulario.get('date_of_birth').patchValue(this.formatDate(new Date())); */
     private formatDate(date:any) {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+      const d = new Date(date);
+      let month = '' + (d.getMonth() + 1);
+      let day = '' + d.getDate();
+      const year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
   }
 
 
   editProfile(){
     const { name, bio, website_url, twitter_username,
-      company, location, date_of_birth } = this.miFormulario.value;
-
+      company, location } = this.miFormulario.value;
 
     const usermail = this.authService.usuario.username!;
     console.log(this.miFormulario.value);
+
+    let date_of_birth = this.miFormulario.controls['date_of_birth'].value;
+
+    if(date_of_birth=="NaN-NaN-NaN"){
+      date_of_birth = null;
+    } 
 
     this.profileService.setProfile(name, bio, website_url, twitter_username,
       company,location,date_of_birth,usermail)
