@@ -3,9 +3,19 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>My App</span>
+    <a [routerLink]="['/dashboard']"
+        class="text-decoration-none">
+      <h3 class="text-light">My App</h3>
+    </a>
     <span class="example-spacer"></span>
-    <span class="fs-6 mx-5">{{usuario.username}}</span>
+    <!-- <span class="fs-6 mx-5">{{usuario.username}}</span> -->
+
+    <form class="mx-5" autocomplete="off" (ngSubmit)="buscar()">
+      <input type="text" name="termino" class="form-control"
+             placeholder="Buscar Usuario..."
+             [(ngModel)]="termino">
+    </form>
+
     <button mat-icon-button class="example-icon person-icon" aria-label="Example icon-button with heart icon"
             (click)="userProfile()">
       <mat-icon>person</mat-icon>
@@ -29,6 +39,35 @@
     <pre>{{usuario | json}}</pre>
 
 </div> -->
+
+<div class="alert alert-danger">
+  No se encontró a ningún usuario.
+</div>
+
+<div class="row">
+  <div class="col">
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Bio</th>
+          <th>Localización</th>
+          <th>Número de Teléfono</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>Alguien</td>
+            <td>mi bio</td>
+            <td>Sevilla</td>
+            <td>657543212</td>
+          </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
 
 <router-outlet></router-outlet>
 

@@ -32,6 +32,7 @@ export class ProfileSettingsComponent {
     twitter_username: [this.profileService.profile.username, [Validators.required, Validators.minLength(5)]],
     company: [this.profileService.profile.empresa],
     location: [this.profileService.profile.direccion],
+    phone_number: [this.profileService.profile.phone_number],
     date_of_birth: [this.formatDate(this.profileService.profile.fecha)],
   });
 
@@ -49,14 +50,14 @@ export class ProfileSettingsComponent {
 
   editProfile(){
     const { name, bio, website_url, twitter_username,
-      company, location, date_of_birth } = this.miFormulario.value;
+      company, location, phone_number, date_of_birth } = this.miFormulario.value;
 
 
     const usermail = this.authService.usuario.username!;
     console.log(this.miFormulario.value);
 
     this.profileService.setProfile(name, bio, website_url, twitter_username,
-      company,location,date_of_birth,usermail)
+      company,location,date_of_birth,usermail,phone_number)
             .subscribe(resp => {
               if(resp){
                 Swal.fire({
@@ -73,6 +74,7 @@ export class ProfileSettingsComponent {
                   username: this.miFormulario.value.twitter_username!,
                   empresa: this.miFormulario.value.company!,
                   direccion: this.miFormulario.value.location!,
+                  phone_number:this.miFormulario.value.phone_number!,
                   fecha: this.miFormulario.value.date_of_birth!
                 };
                 /* console.log(this.profileService.profile); */

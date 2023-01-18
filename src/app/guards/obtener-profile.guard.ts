@@ -15,7 +15,6 @@ export class ObtenerProfileGuard implements CanActivate {
 
 canActivate(): Observable<boolean> | boolean{
   const usermail = this.authService.usuario.username!;
-
   return this.profileService.getProfile(usermail)
     
     

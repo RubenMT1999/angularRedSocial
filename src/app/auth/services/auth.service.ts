@@ -1,8 +1,9 @@
-import { AuthResponse, RenovarToken, Usuario, RegistroStatus } from './../interfaces/interfaces';
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, tap, Observable, firstValueFrom } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+import { AuthResponse, RegistroStatus, RenovarToken, Usuario } from './../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
