@@ -3,6 +3,7 @@ import { ProfileSettingsComponent } from './pages/profile-settings/profile-setti
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { SearchUserComponent } from './pages/search-user/search-user.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     children: [
       {path:'settings', component: ProfileSettingsComponent},
       {path:'user', component: UserProfileComponent},
+      {path:'search', component: SearchUserComponent},
       {path: '**', redirectTo:''}
     ]
   }

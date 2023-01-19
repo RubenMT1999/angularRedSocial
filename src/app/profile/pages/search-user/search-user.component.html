@@ -1,1 +1,27 @@
 <p>search-user works!</p>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th> # </th>
+            <th> Nombre </th>
+            <th> Bio </th>
+            <th> Fecha de Nacimiento </th>
+            <th> Teléfono </th>
+            <th> Localización </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of obtenerBuscados; let i = index">
+            <td class="fw-bold"> {{i + 1}} </td>
+            <td>{{item.name}}</td>
+            <td>{{item.bio}}</td>
+            <td>{{item.fecha?.date | date:'dd/MM/yyyy'}}</td>
+            <td>{{item.phone_number}}</td>
+            <td>{{item.direccion}}</td>
+            <td> <a href="">Ver Perfil</a> </td>
+        </tr>
+    </tbody>
+</table>
+

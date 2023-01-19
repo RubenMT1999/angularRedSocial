@@ -13,7 +13,7 @@ import { catchError } from 'rxjs';
 export class DashboardComponent {
 
 
-  termino: string = 'Hola Mundo';
+  termino: string = '';
 
   showFiller = false;
 
@@ -44,12 +44,13 @@ export class DashboardComponent {
 
     this.profileService.buscarUsuarios(this.termino)
         .subscribe(resp => {
-          console.log(resp);
-        })
+          if(resp){
+            this.router.navigateByUrl('profile/search')
+          }
         
-        
-  
-
+  })
 }
+
+
 }
 

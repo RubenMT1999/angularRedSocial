@@ -6,6 +6,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -17,6 +19,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
   ]
 })
 export class MaterialModule { }

@@ -13,8 +13,14 @@ export class ProfileService {
 
   public userProfile!: UserProfile;
 
+  public perfilesBuscados!: UserProfile[];
+
   get profile(){
     return this.userProfile;
+  }
+
+  get buscados(){
+    return this.perfilesBuscados;
   }
 
   constructor(private http: HttpClient) { }
@@ -70,10 +76,15 @@ export class ProfileService {
     return this.http.post<ObtenerProfile>(url, body)
           .pipe(
             map(resp => {
-              return resp.userProfile!= null;
+              console.log(resp);
+
+              this.perfilesBuscados = resp.userProfile;
+
+              console.log(this.perfilesBuscados);
+              return resp.userProfile.length > 0;
             }),
-            catchError(err => of(true))
-          )
+            catchError(err => of(false))
+          );
   }
 
 
