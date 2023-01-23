@@ -5,7 +5,7 @@ export interface UserProfile {
     username?: string;
     empresa?: string;
     direccion?: string;
-    fecha?: Date;
+    fecha?: DateOfBirth;
     phone_number?: string;
 }
 

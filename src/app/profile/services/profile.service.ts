@@ -58,7 +58,7 @@ export class ProfileService {
                 username: resp.userProfile[0].username,
                 empresa: resp.userProfile[0].company,
                 direccion: resp.userProfile[0].location,
-                fecha: resp.userProfile[0].date_of_birth?.date,
+                fecha: resp.userProfile[0].date_of_birth,
                 phone_number: resp.userProfile[0].phone_number
               } 
 

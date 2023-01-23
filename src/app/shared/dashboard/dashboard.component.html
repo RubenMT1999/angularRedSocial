@@ -13,7 +13,16 @@
     <form class="mx-5" autocomplete="off" (ngSubmit)="buscar()">
       <input type="text" name="termino" class="form-control"
              placeholder="Buscar Usuario..."
+             (input)="teclaPresionada($event)"
              [(ngModel)]="termino">
+
+      <ul class="list-group">
+        <li *ngFor="let perfil of perfilesSugeridos"
+           class="list-group-item list-group-item-action">
+            {{perfil.username}}
+        </li>
+      </ul>
+             
     </form>
 
     <button mat-icon-button class="example-icon person-icon" aria-label="Example icon-button with heart icon"
