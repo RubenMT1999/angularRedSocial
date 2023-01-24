@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, debounceTime } from 'rxjs';
+import { Subject, debounceTime, catchError } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 import { ProfileService } from '../../profile/services/profile.service';
-import { UserProfile } from '../../profile/interfaces/interfaceProfile';
+import { UserProfile, ObtenerProfile } from '../../profile/interfaces/interfaceProfile';
 
 @Component({
   selector: 'app-dashboard',
@@ -80,12 +80,14 @@ export class DashboardComponent implements OnInit{
       elem.classList.remove('is-invalid');
       })
 
-    this.profileService.buscarUsuarios(termino)
-      .subscribe(valor => {
-        if(valor){
-          this.perfilesSugeridos = this.profileService.perfilesBuscados.splice(0,3);
-        }
-      })
+    this.profileService.sugerirUsuarios(termino)
+        .subscribe(resp => {
+          if(resp && termino.length>0){
+            this.perfilesSugeridos = resp.userProfile.splice(0,3);
+          }else{
+            this.perfilesSugeridos = [];
+          }
+      });
 
   }
 

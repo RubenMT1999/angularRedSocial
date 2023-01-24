@@ -88,4 +88,13 @@ export class ProfileService {
   }
 
 
+  sugerirUsuarios(username: string){
+    const url = `${this.baseUrl}/sugerencia`;
+    const body = {username};
+
+    return this.http.post<ObtenerProfile>(url,body)
+      
+  }
+
+
 }

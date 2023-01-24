@@ -16,12 +16,8 @@
              (input)="teclaPresionada($event)"
              [(ngModel)]="termino">
 
-      <ul class="list-group">
-        <li *ngFor="let perfil of perfilesSugeridos"
-           class="list-group-item list-group-item-action">
-            {{perfil.username}}
-        </li>
-      </ul>
+      
+
              
     </form>
 
@@ -38,6 +34,16 @@
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
+
+  <ul class="list-group" >
+    <li *ngFor="let perfil of perfilesSugeridos"
+       class="list-group-item list-group-item-action">
+      <a class="nav-link"
+        (click)="termino = perfil.username!; buscar()">
+          {{perfil.username}}
+      </a>
+    </li>
+  </ul>
 
 <!-- <div class="mt-5">
     <h1>Dashboard</h1>
