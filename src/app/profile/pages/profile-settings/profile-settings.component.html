@@ -25,6 +25,10 @@
           <label class="form-label" for="formbio">Bio</label>
           <input type="text" id="formbio" class="form-control"
                 formControlName="bio" />
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('bio')">
+                No puede tener más de 40 caracteres.
+          </span>
         </div>
     </div>
   </div>
@@ -89,6 +93,11 @@
           <label class="form-label" for="formdate">Fecha de Nacimiento</label>
           <input type="date" id="formdate" class="form-control"
                 formControlName="date_of_birth" />
+
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('date_of_birth')">
+                Establece una fecha pasada.
+          </span>
         </div>
     </div>
   </div>

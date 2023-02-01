@@ -38,7 +38,11 @@ export class DashboardComponent implements OnInit{
 
   get usuario(){
     return this.auth.usuario;
-  }            
+  } 
+  
+  get profile(){
+    return this.profileService.profile;
+  }
 
   logout(){
     this.router.navigateByUrl('/auth')
@@ -57,9 +61,13 @@ export class DashboardComponent implements OnInit{
 
     this.profileService.buscarUsuarios(this.termino)
         .subscribe(resp => {
-          if(resp){
+          if(this.termino == this.profile.username){
+            this.router.navigateByUrl('profile/user')
+          }
+          else if(resp){
             this.router.navigateByUrl('profile/search')
-          }else{
+          }
+          else{
               const links = document.querySelectorAll('.form-control');
               links.forEach(elem => {
               elem.classList.add('is-invalid');

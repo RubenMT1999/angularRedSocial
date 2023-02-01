@@ -5,6 +5,7 @@ import { ProfileService } from './../../services/profile.service';
 import { AuthService } from './../../../auth/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
+import { ValidatorService } from '../../../shared/validators/validator.service';
 
 @Component({
   selector: 'app-profile-settings',
@@ -21,19 +22,20 @@ export class ProfileSettingsComponent {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private profileService: ProfileService,
-              private router: Router){}
+              private router: Router,
+              private validatorService: ValidatorService){}
 
   
 
   miFormulario: FormGroup = this.fb.group({
     name: [this.profileService.profile.name, [Validators.required, Validators.minLength(3)]],
-    bio: [this.profileService.profile.bio],
+    bio: [this.profileService.profile.bio, [Validators.maxLength(40)]],
     website_url: [this.profileService.profile.weburl],
     twitter_username: [this.profileService.profile.username, [Validators.required, Validators.minLength(5)]],
     company: [this.profileService.profile.empresa],
     location: [this.profileService.profile.direccion],
     phone_number: [this.profileService.profile.phone_number],
-    date_of_birth: [this.formatDate(this.profileService.profile.fecha)],
+    date_of_birth: [this.formatDate(this.profileService.profile.fecha), [this.validatorService.dateValidator]],
   });
 
 /*   this.miFormulario.get('date_of_birth').patchValue(this.formatDate(new Date())); */
@@ -87,7 +89,7 @@ export class ProfileSettingsComponent {
 
 
   campoEsValido(campo: string){
-    return this.miFormulario.controls[campo].errors && this.miFormulario.controls[campo].touched;
+    return this.miFormulario.get(campo)?.invalid && this.miFormulario.get(campo)?.touched;
   }
 
 
