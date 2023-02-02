@@ -1,17 +1,21 @@
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserProfile } from './../../interfaces/interfaceProfile';
 import { ProfileService } from './../../services/profile.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { getLocaleTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit{
+
+  public someValue:string= '';
 
   get obtenerProfile(){
     return this.profileService.profile;
@@ -22,16 +26,19 @@ export class UserProfileComponent {
   }
 
   get obtenerPosts(){
-    return this.postService.obtenerPosts;
+    return this.postService.usuarioPosts;
   }
-
 
   constructor(private fb: FormBuilder,
               private profileService: ProfileService,
               private authService: AuthService,
-              private postService: PostService){
+              private postService: PostService,
+              private router: Router){
   }
 
+  ngOnInit() {
+    this.listarPosts();
+  }
 
   miFormulario: FormGroup = this.fb.group({
     message: ['', [Validators.required, Validators.maxLength(50)]],
@@ -57,6 +64,11 @@ export class UserProfileComponent {
             showConfirmButton: false,
             timer: 1500
           });
+
+          //limpiamos el valor del input.
+          this.someValue= '';
+          //ejecutamos onInit para refrescar la página y aparezca el mensaje.
+          this.ngOnInit();
       }else{
         Swal.fire('Error','Ha habido algún error al crear el post','error');
       }
@@ -69,6 +81,12 @@ export class UserProfileComponent {
     
     const usermail = this.authService.usuario.username;
 
+    this.postService.obtenerPosts(usermail)
+      .subscribe(resp => {
+        if(!resp){
+          Swal.fire('Error','Ha habido algún error al crear el post','error');
+        }
+      })
   }
 
 
