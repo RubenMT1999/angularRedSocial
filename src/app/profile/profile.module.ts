@@ -7,10 +7,12 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SearchUserComponent } from './pages/search-user/search-user.component';
+import {PostUserComponent} from "./pages/post-user/post-user.component";
 
 
 @NgModule({
   declarations: [
+    PostUserComponent,
     ProfileSettingsComponent,
     UserProfileComponent,
     SearchUserComponent

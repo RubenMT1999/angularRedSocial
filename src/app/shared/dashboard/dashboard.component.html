@@ -3,10 +3,10 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <a [routerLink]="['/dashboard']"
+    <button (click)="postUser()"
         class="text-decoration-none">
       <h3 class="text-light">My App</h3>
-    </a>
+    </button>
     <span class="example-spacer"></span>
     <!-- <span class="fs-6 mx-5">{{usuario.username}}</span> -->
 
@@ -26,7 +26,7 @@
               </li>
             </ul>
 
-             
+
     </form>
 
     <button mat-icon-button class="example-icon person-icon" aria-label="Example icon-button with heart icon"

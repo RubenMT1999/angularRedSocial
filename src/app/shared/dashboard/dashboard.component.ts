@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit{
 
   get usuario(){
     return this.auth.usuario;
-  } 
-  
+  }
+
   get profile(){
     return this.profileService.profile;
   }
@@ -54,6 +54,9 @@ export class DashboardComponent implements OnInit{
 
   userProfile(){
     this.router.navigateByUrl('/profile/user')
+  }
+  postUser(){
+    this.router.navigateByUrl('/index')
   }
 
   buscar(){
@@ -73,7 +76,7 @@ export class DashboardComponent implements OnInit{
               elem.classList.add('is-invalid');
             })
           }
-        
+
   })
 }
 
