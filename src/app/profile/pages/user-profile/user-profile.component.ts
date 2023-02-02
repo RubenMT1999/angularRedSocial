@@ -21,6 +21,11 @@ export class UserProfileComponent {
     return this.authService.usuario;
   }
 
+  get obtenerPosts(){
+    return this.postService.obtenerPosts;
+  }
+
+
   constructor(private fb: FormBuilder,
               private profileService: ProfileService,
               private authService: AuthService,
@@ -58,5 +63,13 @@ export class UserProfileComponent {
     
   })
 }
+
+
+  listarPosts(){
+    
+    const usermail = this.authService.usuario.username;
+
+  }
+
 
 }

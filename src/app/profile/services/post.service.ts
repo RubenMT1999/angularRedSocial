@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ProfileStatus } from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';
+import { PostsUsers, ArrayPostUsers } from '../interfaces/interfacePost';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ export class PostService {
 
   private baseUrl: string = environment.baseUrl;
 
-/*   public postUsuario!: ; */
+  public usuarioPosts!: PostsUsers[]; 
+
+  get postUsuarios(){
+    return this.usuarioPosts;
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -28,5 +33,23 @@ export class PostService {
         catchError(err => of(false))
       )
   }
+
+
+  obtenerPosts(email?: string){
+    const url = `${this.baseUrl}/post/user/list`;
+    const body = {email};
+
+    return this.http.post<ArrayPostUsers>(url,body)
+      .pipe(
+        map(resp => {
+          this.usuarioPosts = resp.userPosts!;
+
+          return resp.userPosts?.length != 0
+        }),
+        catchError(err => of(false))
+      );
+  }
+
+
 
 }
