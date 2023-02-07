@@ -83,9 +83,7 @@ export class UserProfileComponent implements OnInit{
 
     this.postService.obtenerPosts(usermail)
       .subscribe(resp => {
-        if(!resp){
-          Swal.fire('Error','Ha habido algún error al crear el post','error');
-        }
+        
       })
   }
 

@@ -51,6 +51,7 @@ export class ProfileService {
     return this.http.post<ObtenerProfile>(url, body)
           .pipe(
             map(resp => {
+
               this.userProfile = {
                 name: resp.userProfile[0].name,
                 bio: resp.userProfile[0].bio,
@@ -76,8 +77,6 @@ export class ProfileService {
     return this.http.post<ObtenerProfile>(url, body)
           .pipe(
             map(resp => {
-              console.log(resp);
-
               this.perfilesBuscados = resp.userProfile;
 
               console.log(this.perfilesBuscados);
