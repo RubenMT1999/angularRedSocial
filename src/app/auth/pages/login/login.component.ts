@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
-  
+
 
   //importar ReactiveFormsModule en el módulo.
   miFormulario: FormGroup = this.fb.group({
@@ -33,7 +33,7 @@ export class LoginComponent {
     this.authService.login(email,password)
       .subscribe(resp => {
         if(resp){
-          this.router.navigateByUrl('dashboard');
+          this.router.navigateByUrl('index');
         }else{
             Swal.fire('Error','Compruebe los datos introducidos e inténtelo de nuevo','error');
         }

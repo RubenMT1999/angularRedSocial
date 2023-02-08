@@ -6,6 +6,9 @@ import {Component} from "@angular/core";
   styleUrls: ['./post-user.component.css']
 })
 export class PostUserComponent{
+  constructor() {
+    console.log('prueba');
+  }
 
 }
 
