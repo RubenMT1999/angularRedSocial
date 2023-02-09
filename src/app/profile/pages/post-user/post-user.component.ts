@@ -12,8 +12,11 @@ import {exhaustMap} from "rxjs";
 
 
 export class PostUserComponent{
+  ngOnInit() {
+    this.listarPost();
+  }
 
-  get obtenerPosts(){
+  get obtenerPost(){
     return this.postService.obtenerPosts;
   }
 
@@ -21,8 +24,15 @@ export class PostUserComponent{
               private postService: PostService) {
   }
 
+listarPost(){
+  const usermail = this.authService.usuario.username!;
 
-  usermail = this.authService.usuario.username!;
+  this.postService.obtenerPosts(usermail)
+    .subscribe(resp =>{
+
+    })
+  }
+
 
 
 
