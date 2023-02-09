@@ -79,6 +79,7 @@ export class ProfileService {
             map(resp => {
               this.perfilesBuscados = resp.userProfile;
 
+              localStorage.setItem('PerfilesBuscados', JSON.stringify(this.perfilesBuscados));
               console.log(this.perfilesBuscados);
               return resp.userProfile.length > 0;
             }),

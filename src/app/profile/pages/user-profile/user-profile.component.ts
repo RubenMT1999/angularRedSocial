@@ -78,13 +78,40 @@ export class UserProfileComponent implements OnInit{
 
 
   listarPosts(){
-    
     const usermail = this.authService.usuario.username;
 
     this.postService.obtenerPosts(usermail)
       .subscribe(resp => {
         
       })
+  }
+
+
+  borrarPost(id: number){
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Se perderá tu comentario para siempre!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.postService.borrarPost(id)
+          .subscribe(resp => {
+        })
+
+        Swal.fire(
+          'Eliminado!',
+          'Tu comentario a sido borrado.',
+          'success'
+        )
+        this.ngOnInit();
+      }
+    })
   }
 
 

@@ -1,5 +1,6 @@
 
 export interface PostsUsers {
+    id?: number;
     message?: string;
     image?: string;
     relio?: number;
@@ -16,4 +17,8 @@ export interface PublicationDate {
 
 export interface ArrayPostUsers{
     userPosts?: PostsUsers[]
+}
+
+export interface PostStatus {
+    status?: string;
 }
