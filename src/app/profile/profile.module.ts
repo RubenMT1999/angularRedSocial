@@ -12,7 +12,6 @@ import {PostUserComponent} from "./pages/post-user/post-user.component";
 
 @NgModule({
   declarations: [
-    PostUserComponent,
     ProfileSettingsComponent,
     UserProfileComponent,
     SearchUserComponent
