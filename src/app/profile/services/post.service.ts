@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ProfileStatus } from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';
-import { PostsUsers, ArrayPostUsers } from '../interfaces/interfacePost';
+import { PostsUsers, ArrayPostUsers, PostStatus } from '../interfaces/interfacePost';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +49,25 @@ export class PostService {
         catchError(err => of(false))
       );
   }
+
+
+  borrarPost(id: number){
+    const url = `${this.baseUrl}/post/delete`;
+    const options = {
+      body: {
+        id: id
+      }
+    };
+
+    return this.http.delete<PostStatus>(url, options)
+      .pipe(
+        map(resp => {
+          return resp.status == 'Post Eliminado'
+        }),
+        catchError(err => of(false))
+      );
+  }
+
 
 
 

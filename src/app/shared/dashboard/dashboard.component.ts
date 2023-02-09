@@ -1,7 +1,7 @@
+import { AuthService } from './../../auth/services/auth.service';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, catchError } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
 
 import { ProfileService } from '../../profile/services/profile.service';
 import { UserProfile, ObtenerProfile } from '../../profile/interfaces/interfaceProfile';
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit{
   perfilesSugeridos: UserProfile[] = [];
 
   constructor(private router: Router,
-              private auth: AuthService,
+              private authService: AuthService,
               private profileService: ProfileService){}
 
 
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit{
 
 
   get usuario(){
-    return this.auth.usuario;
+    return this.authService.usuario;
   }
 
   get profile(){
@@ -55,15 +55,15 @@ export class DashboardComponent implements OnInit{
   userProfile(){
     this.router.navigateByUrl('/profile/user')
   }
-  postUser(){
-    this.router.navigateByUrl('/index')
-  }
+
 
   buscar(){
     console.log(this.termino);
 
     this.profileService.buscarUsuarios(this.termino)
         .subscribe(resp => {
+          //debo activar el obtener-profile.guard para obtener primero el profile username,
+          //de lo contrario username será undefined.
           if(this.termino == this.profile.username){
             this.router.navigateByUrl('profile/user')
           }

@@ -36,7 +36,7 @@
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Email</p>
+                  <p class="mb-0">Username</p>
                 </div>
                 <div class="col-sm-9">
                   <p class="text-muted mb-0">{{obtenerUser.username}}</p>
@@ -76,15 +76,33 @@
       </div>
 
       <div class="row">
-        <form [formGroup]="miFormulario" (ngSubmit)="userPost()">
-          <div class="col-lg-4">
-            <label for="exampleInputEmail1" class="form-label">Escribe tu nuevo Post</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   formControlName="message">
-          </div>
-          <button type="submit" [disabled]="miFormulario.invalid" class="btn btn-primary mt-3">Aceptar</button>
-        </form>
+        <div class="col-lg-4">
+          <form [formGroup]="miFormulario" (ngSubmit)="userPost()">
+            
+              <label for="exampleInputEmail1" class="form-label">Escribe tu nuevo Post</label>
+              <input type="text" [(ngModel)]="someValue" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    formControlName="message">
+            
+            <button type="submit" [disabled]="miFormulario.invalid" class="btn btn-primary mt-3">Aceptar</button>
+          </form>
+        </div>
+
+        <div class="col-lg-8">
+        <div class="card mb-3" *ngFor="let post of obtenerPosts">
+              <div class="card-body">
+                {{post.message}}
+              </div>
+              <div class="card-footer text-muted d-flex justify-content-end">
+                <p class="mt-3">{{post.publication}}</p>
+                <button mat-icon-button class="example-icon manage_accounts-icon" aria-label="Example icon-button with heart icon"
+                        (click)="borrarPost(post.id!)">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+              </div>
+        </div>
+      </div>
+
+      </div>
     </div>
 
-    </div>
   </section>
