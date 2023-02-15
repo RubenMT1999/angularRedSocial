@@ -19,7 +19,7 @@ export class DashboardComponent {
   constructor(private router: Router,
               private auth: AuthService,){}
 
-  
+
 
   logout(){
     this.router.navigateByUrl('/auth')
@@ -31,6 +31,25 @@ export class DashboardComponent {
 
   userProfile(){
     this.router.navigateByUrl('/profile/user')
+  }
+
+  onDarkMode(){
+
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage['theme'] === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+      document.documentElement.classList.remove('light')
+    } else {
+      document.documentElement.classList.add('light')
+      document.documentElement.classList.remove('dark')
+    }
+
+    // Whenever the user explicitly chooses light mode
+    localStorage['theme'] = 'light'
+
+    // Whenever the user explicitly chooses dark mode
+    localStorage['theme'] = 'dark'
+
   }
 
 }

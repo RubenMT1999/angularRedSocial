@@ -9,6 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   declarations: [
     DashboardComponent
   ],
+  exports: [
+    DashboardComponent
+  ],
   imports: [
     ProtectedRoutingModule,
   ]
