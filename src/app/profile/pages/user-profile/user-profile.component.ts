@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { getLocaleTimeFormat } from '@angular/common';
+import { FollowersService } from '../../services/followers.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,6 +17,14 @@ import { getLocaleTimeFormat } from '@angular/common';
 export class UserProfileComponent implements OnInit{
 
   public someValue:string= '';
+
+  get numeroSeguidores(){
+    return this.followerService.numeroSeguidores;
+  }
+
+  get nombreSeguidores(){
+    return this.followerService.listaSeguidores;
+  }
 
   get obtenerProfile(){
     return this.profileService.profile;
@@ -33,11 +42,14 @@ export class UserProfileComponent implements OnInit{
               private profileService: ProfileService,
               private authService: AuthService,
               private postService: PostService,
+              private followerService: FollowersService,
               private router: Router){
   }
 
   ngOnInit() {
     this.listarPosts();
+    this.followerService.obtenerNumeroSeguidores(this.obtenerProfile.username);
+    this.followerService.listarSeguidores(this.obtenerProfile.username);
   }
 
   miFormulario: FormGroup = this.fb.group({
@@ -113,6 +125,8 @@ export class UserProfileComponent implements OnInit{
       }
     })
   }
+
+
 
 
 }

@@ -63,6 +63,7 @@ export class ProfileService {
                 phone_number: resp.userProfile[0].phone_number
               } 
 
+              console.log(this.userProfile.username);
               return true;
             }),
             catchError(err => of(true))

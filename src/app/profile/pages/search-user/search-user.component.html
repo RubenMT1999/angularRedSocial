@@ -13,8 +13,11 @@
               <h5 class="my-3">{{obtenerBuscados[0].username}}</h5>
               <p class="text-muted mb-1">{{obtenerBuscados[0].bio | titlecase}}</p>
               <p class="text-muted mb-4">{{obtenerBuscados[0].direccion}}</p>
+              <p class="text-muted mb-4">Número de Seguidores:  {{numeroSeguidores}}</p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Seguir</button>
+                <button type="button" class="btn btn-primary"
+                (click)="seguirUsuario(obtenerBuscados[0].username!)">
+                  Seguir</button>
                 <button type="button" class="btn btn-outline-primary ms-1">Mensaje</button>
               </div>
             </div>
@@ -165,5 +168,15 @@
           </div>
         </div>
       </div>
+
+      <p class="mt-2 mb-3">Seguidores:</p>
+      <div class="card mb-3" *ngFor="let seguidor of nombreSeguidores">
+        <button type="button" class="btn btn-primary"
+        (click)="perfilSeguidores(seguidor)">
+          {{seguidor}}</button>
+      </div>
+
+
+
     </div>
   </section>
