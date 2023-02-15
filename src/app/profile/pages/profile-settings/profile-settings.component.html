@@ -1,5 +1,5 @@
 
-<form class="mt-5 mx-5" [formGroup]="miFormulario" (ngSubmit)="editProfile()">
+<form class="mt-5 mx-5" (ngSubmit)="editProfile()">
 
   <!-- name input -->
   <div class="row mb-4  d-flex justify-content-center">
@@ -89,7 +89,6 @@
         <div class="form-outline">
           <button mat-fab extended style="background-color: #69f0ae;"
                   type="submit" [disabled]="miFormulario.invalid">
-            <mat-icon>done_outline</mat-icon>
             <span class="strokeme">Aceptar</span>
           </button>
         </div>

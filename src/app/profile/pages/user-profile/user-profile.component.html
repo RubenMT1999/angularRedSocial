@@ -1,6 +1,6 @@
 <p>user-profile works!</p>
 
-<span>{{obtenerProfile | json}}</span>
+<span>{{obtenerProfile }}</span>
 
 <section style="background-color: #eee;">
     <div class="container py-5">
@@ -12,7 +12,7 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
               <h5 class="my-3">{{obtenerProfile.username}}</h5>
-              <p class="text-muted mb-1">{{obtenerProfile.bio | titlecase}}</p>
+              <p class="text-muted mb-1">{{obtenerProfile.bio}}</p>
               <p class="text-muted mb-4">{{obtenerProfile.direccion}}</p>
               <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-primary">Seguir</button>
@@ -73,7 +73,7 @@
                   <p class="mb-0">Nacimiento</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{obtenerProfile.fecha | date: 'dd/MM/yyyy'}}</p>
+                  <p class="text-muted mb-0">{{obtenerProfile.fecha }}</p>
                 </div>
               </div>
               <hr>
