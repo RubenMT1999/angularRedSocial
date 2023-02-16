@@ -24,20 +24,21 @@ export class LoginComponent {
               private router: Router,
               private authService: AuthService){}
 
+  successful: string = '';
 
 
-  // login(){
-  //
-  //   const { email, password } = this.miFormulario.value;
-  //
-  //   this.authService.login(email,password)
-  //     .subscribe(resp => {
-  //       if(resp){
-  //         this.router.navigateByUrl('dashboard');
-  //       }else{
-  //           Swal.fire('Error','Compruebe los datos introducidos e inténtelo de nuevo','error');
-  //       }
-  //     });
-  // }
+  login(){
+
+    const { email, password } = this.miFormulario.value;
+
+    this.authService.login(email,password)
+      .subscribe(resp => {
+        if(resp){
+          this.router.navigateByUrl('dashboard');
+        }else{
+          this.successful = 'Error, Compruebe los datos introducidos e inténtelo de nuevo';
+        }
+      });
+  }
 
 }
