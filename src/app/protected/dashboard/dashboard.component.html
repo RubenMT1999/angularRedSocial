@@ -1,8 +1,23 @@
 <header class="bg-white dark:bg-[#191919] flex flex-row justify-around gap-10 items-center h-20">
   <div>
     <ul class="flex flex-row items-center gap-5">
-      <li class="text-[#5DADE2] dark:text-[#5DADE2] text-3xl font-extrabold">Talk To Talk.</li>
-      <li><input type="text" placeholder="Search..." class="input dark:border-none rounded-md  h-8 ml-10 placeholder:text-[#D0D0D0] bg-[#F0F0F0] dark:bg-[#7c7c7b] dark:placeholder:opacity-50  dark:border-white dark:bg-opacity-20 text-black dark:text-white dark:placeholder:text-white"></li>
+      <li class="text-[#5DADE2] dark:text-[#5DADE2] text-3xl font-extrabold"><a [routerLink]="['/darshboard']">Talk To Talk.</a></li>
+      
+        <form autocomplete="off" (ngSubmit)="buscar()">
+          <input type="text" name="termino" (input)="teclaPresionada($event)" [(ngModel)]="termino" placeholder="Search..." 
+          class="input dark:border-none rounded-md  h-8 ml-10 placeholder:text-[#D0D0D0] bg-[#F0F0F0] dark:bg-[#7c7c7b] dark:placeholder:opacity-50  dark:border-white dark:bg-opacity-20 text-black dark:text-white dark:placeholder:text-white">
+        
+          <ul class="" >
+            <li *ngFor="let perfil of perfilesSugeridos"
+               class="">
+              <a class=""
+                (click)="termino = perfil.username!; buscar()">
+                  {{perfil.username}}
+              </a>
+            </li>
+          </ul>
+        
+        </form>
     </ul>
   </div>
 
@@ -25,13 +40,13 @@
         <svg class="w-6 fill-black dark:fill-white " viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.02 2.90991C8.70997 2.90991 6.01997 5.59991 6.01997 8.90991V11.7999C6.01997 12.4099 5.75997 13.3399 5.44997 13.8599L4.29997 15.7699C3.58997 16.9499 4.07997 18.2599 5.37997 18.6999C9.68997 20.1399 14.34 20.1399 18.65 18.6999C19.86 18.2999 20.39 16.8699 19.73 15.7699L18.58 13.8599C18.28 13.3399 18.02 12.4099 18.02 11.7999V8.90991C18.02 5.60991 15.32 2.90991 12.02 2.90991Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path> <path d="M13.87 3.19994C13.56 3.10994 13.24 3.03994 12.91 2.99994C11.95 2.87994 11.03 2.94994 10.17 3.19994C10.46 2.45994 11.18 1.93994 12.02 1.93994C12.86 1.93994 13.58 2.45994 13.87 3.19994Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M15.02 19.0601C15.02 20.7101 13.67 22.0601 12.02 22.0601C11.2 22.0601 10.44 21.7201 9.90002 21.1801C9.36002 20.6401 9.02002 19.8801 9.02002 19.0601" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"></path> </g></svg>
       </li>
       <li class="dropdown">
-        <label tabindex="0" class="btn m-1 w-40 bg-[#E8E8E8] dark:bg-[#212F3C] dark:border-[#34495E] text-white dark:text-white border-[#F0F0F0]  hover:bg-[#D0D0D0] dark:hover:bg-[#1B2631] hover:border-[#F0F0F0]">
+        <label tabindex="0" class="btn m-1 w-40 bg-[#E8E8E8] dark:bg-[#212F3C] dark:border-[#34495E] text-[#989898] dark:text-white border-[#F0F0F0]  hover:bg-[#D0D0D0] dark:hover:bg-[#1B2631] hover:border-[#F0F0F0]">
           AdrianSK8
           <svg class="w-4  ml-3 fill-[#989898] dark:fill-white fill" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569l9 13z"></path></g></svg>
         </label>
         <ul tabindex="0" class="dropdown-content bg-[#F0F0F0] menu p-2 shadow dark:bg-[#212F3C] rounded-box w-52">
-          <li><a class="text-gray-800 hover:bg-[#D0D0D0] dark:text-white dark:hover:bg-[#1B2631]">Perfil</a></li>
-          <li><a class="text-gray-800 hover:bg-[#D0D0D0] dark:text-white dark:hover:bg-[#1B2631]">Log Out</a></li>
+          <li><a class="text-gray-800 hover:bg-[#D0D0D0] dark:text-white dark:hover:bg-[#1B2631]" (click)="userProfile()">Perfil</a></li>
+          <li><a class="text-gray-800 hover:bg-[#D0D0D0] dark:text-white dark:hover:bg-[#1B2631]" (click)="logout()">Log Out</a></li>
         </ul>
       </li>
     </ul>

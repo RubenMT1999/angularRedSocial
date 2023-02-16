@@ -13,19 +13,25 @@ export class ProfileService {
 
   public userProfile!: UserProfile;
 
+  public perfilesBuscados!: UserProfile[];
+
   get profile(){
     return this.userProfile;
+  }
+
+  get buscados(){
+    return this.perfilesBuscados;
   }
 
   constructor(private http: HttpClient) { }
 
 
   setProfile(name?: string, bio?:string, website_url?:string, twitter_username?:string,
-    company?:string, location?:string, date_of_birth?:Date, usermail?:string){
+    company?:string, location?:string, date_of_birth?:Date, usermail?:string, phone_number?:string){
 
     const url = `${this.baseUrl}/profile/create`;
     const body = {name, bio, website_url, twitter_username, company, location,
-                date_of_birth, usermail};
+                date_of_birth, usermail, phone_number};
 
     return this.http.post<ProfileStatus>(url, body)
           .pipe(
@@ -45,6 +51,7 @@ export class ProfileService {
     return this.http.post<ObtenerProfile>(url, body)
           .pipe(
             map(resp => {
+
               this.userProfile = {
                 name: resp.userProfile[0].name,
                 bio: resp.userProfile[0].bio,
@@ -52,9 +59,11 @@ export class ProfileService {
                 username: resp.userProfile[0].username,
                 empresa: resp.userProfile[0].company,
                 direccion: resp.userProfile[0].location,
-                fecha: resp.userProfile[0].date_of_birth?.date
+                // fecha: resp.userProfile[0].date_of_birth,
+                // phone_number: resp.userProfile[0].phone_number
               } 
 
+              console.log(this.userProfile.username);
               return true;
             }),
             catchError(err => of(true))
@@ -62,7 +71,31 @@ export class ProfileService {
   }
 
 
+  buscarUsuarios(username : string){
+    const url = `${this.baseUrl}/profile/buscar`;
+    const body = {username};
 
+    return this.http.post<ObtenerProfile>(url, body)
+          .pipe(
+            map(resp => {
+              this.perfilesBuscados = resp.userProfile;
+
+              localStorage.setItem('PerfilesBuscados', JSON.stringify(this.perfilesBuscados));
+              console.log(this.perfilesBuscados);
+              return resp.userProfile.length > 0;
+            }),
+            catchError(err => of(false))
+          );
+  }
+
+
+  sugerirUsuarios(username: string){
+    const url = `${this.baseUrl}/sugerencia`;
+    const body = {username};
+
+    return this.http.post<ObtenerProfile>(url,body)
+      
+  }
 
 
 }
