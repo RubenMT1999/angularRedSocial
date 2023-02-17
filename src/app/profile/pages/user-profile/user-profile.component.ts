@@ -10,16 +10,6 @@ import { Component } from '@angular/core';
 })
 export class UserProfileComponent {
 
-  get obtenerProfile(){
-    return this.profileService.profile;
-  }
 
-  get obtenerUser(){
-    return this.authService.usuario;
-  }
-
-  constructor(private profileService: ProfileService,
-              private authService: AuthService){
-  }
 
 }
