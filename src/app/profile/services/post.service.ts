@@ -12,7 +12,7 @@ export class PostService {
 
   private baseUrl: string = environment.baseUrl;
 
-  public usuarioPosts!: PostsUsers[]; 
+  public usuarioPosts!: PostsUsers[];
 
   get postUsuarios(){
     return this.usuarioPosts;
@@ -49,6 +49,22 @@ export class PostService {
         catchError(err => of(false))
       );
   }
+
+  obtenerPostsFollowers(email?: string){
+    const url = `${this.baseUrl}/post/user`;
+    const body = {email};
+
+    return this.http.post<ArrayPostUsers>(url,body)
+      .pipe(
+        map(resp => {
+          this.usuarioPosts = resp.userPosts!;
+
+          return resp.userPosts?.length != 0
+        }),
+        catchError(err => of(false))
+      );
+  }
+
 
 
   borrarPost(id: number){

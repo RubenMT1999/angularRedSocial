@@ -16,8 +16,8 @@ export class PostUserComponent{
     this.listarPost();
   }
 
-  get obtenerPost(){
-    return this.postService.obtenerPosts;
+  get obtenerPostFollowers(){
+    return this.postService.usuarioPosts;
   }
 
   constructor(private authService: AuthService,
@@ -27,7 +27,7 @@ export class PostUserComponent{
 listarPost(){
   const usermail = this.authService.usuario.username!;
 
-  this.postService.obtenerPosts(usermail)
+  this.postService.obtenerPostsFollowers(usermail)
     .subscribe(resp =>{
 
     })
