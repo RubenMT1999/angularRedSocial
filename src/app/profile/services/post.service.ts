@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ProfileStatus } from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';
-import { PostsUsers, ArrayPostUsers, PostStatus } from '../interfaces/interfacePost';
+import {PostsUsers, ArrayPostUsers, PostStatus, ArrayPostFollowers, PostFollower} from '../interfaces/interfacePost';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,8 @@ export class PostService {
   private baseUrl: string = environment.baseUrl;
 
   public usuarioPosts!: PostsUsers[];
+
+  public usuarioPostsFollower!: PostFollower[]
 
   get postUsuarios(){
     return this.usuarioPosts;
@@ -54,10 +56,12 @@ export class PostService {
     const url = `${this.baseUrl}/post/user`;
     const body = {email};
 
-    return this.http.post<ArrayPostUsers>(url,body)
+    return this.http.post<ArrayPostFollowers>(url,body)
       .pipe(
         map(resp => {
-          this.usuarioPosts = resp.userPosts!;
+
+          console.log((resp))
+          this.usuarioPostsFollower = resp.userPosts!;
 
           return resp.userPosts?.length != 0
         }),

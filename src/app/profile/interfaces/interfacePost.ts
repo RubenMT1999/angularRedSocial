@@ -7,6 +7,17 @@ export interface PostsUsers {
     publication?: PublicationDate;
 }
 
+export interface PostFollower {
+  username?: string;
+  pais?: string
+  message?: string;
+  image?: string;
+  relio?: number;
+  publication?: PublicationDate;
+}
+
+
+
 
 export interface PublicationDate {
     date?:          Date;
@@ -17,6 +28,10 @@ export interface PublicationDate {
 
 export interface ArrayPostUsers{
     userPosts?: PostsUsers[]
+}
+
+export interface ArrayPostFollowers{
+  userPosts?: PostFollower[]
 }
 
 export interface PostStatus {

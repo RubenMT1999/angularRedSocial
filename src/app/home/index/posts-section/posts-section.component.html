@@ -1,7 +1,7 @@
 
 <div class="flex flex-col mt-12 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]">
 
-    <div class="flex flex-col justify-center mt-4 ">
+    <div class="flex flex-col justify-center mt-4">
         <div class="flex flex-row gap-2">
             <div class="avatar w-12 rounded-full cursor-pointer">
                 <img src="../../../assets/avatar-icon.jpg" alt="" class="">
@@ -21,7 +21,7 @@
 
 </div>
 
-<div class="flex flex-col mt-6 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]">
+<div class="flex flex-col mt-6 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]" *ngFor="let post of obtenerPostFollowers">
 
     <div class="flex flex-row items-center justify-between">
         <div class="flex flex-row">
@@ -29,19 +29,17 @@
                 <img src="../../../assets/avatar-icon.jpg" alt="" class="">
             </div>
             <div class="ml-4">
-                <h5 class="font-semibold text-black dark:text-white cursor-pointer">Adrian</h5>
-                <small>España, Sevilla</small>
-            </div>  
+                <h5 class="font-semibold text-black dark:text-white cursor-pointer">{{post.username}}</h5>
+                <small>{{post.pais}}</small>
+            </div>
         </div>
-        
+
         <div>
-            <small>15 mins ago</small>
+            <small>{{post.publication}}</small>
         </div>
     </div>
 
-    <div class="mt-4 opacity-60">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi doloribus asperiores molestias perferendis ad quod illum nisi dolorum sed ipsam. Veritatis exercitationem necessitatibus, minus recusandae quod a dignissimos quibusdam id?
-        Quos tempora odit laboriosam aliquam!
+    <div class="mt-4 opacity-60">{{post.message}}
     </div>
 
     <hr class="mt-2 dark:opacity-40">
