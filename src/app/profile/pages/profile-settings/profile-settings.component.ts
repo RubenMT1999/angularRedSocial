@@ -4,25 +4,28 @@ import { Router } from '@angular/router';
 import { ProfileService } from './../../services/profile.service';
 import { AuthService } from './../../../auth/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile-settings',
   templateUrl: './profile-settings.component.html',
   styleUrls: ['./profile-settings.component.css']
 })
-export class ProfileSettingsComponent {
-
-  get obtenerProfile(){
-    return this.profileService.profile;
-  }
-
+export class ProfileSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private profileService: ProfileService,
               private router: Router){}
 
+  ngOnInit(): void {
+  }
+
+  
+
+  get obtenerProfile(){
+      return this.profileService.profile;
+    }
 
 
   miFormulario: FormGroup = this.fb.group({
