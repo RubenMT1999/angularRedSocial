@@ -3,7 +3,7 @@ import { AuthService } from './../../services/auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 
 @Component({
@@ -22,23 +22,19 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private router: Router,
               private authService: AuthService){}
 
+   successful: string = '';
 
   registro(){
     const { email, password } = this.miFormulario.value;
 
+
     this.authService.registro(email,password)
       .subscribe(resp => {
         if(resp){
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Te has registrado con éxito!',
-            showConfirmButton: false,
-            timer: 1500
-          })
+          this.successful = 'Te has registrado con éxito'
           this.router.navigateByUrl('auth');
         }else{
-            Swal.fire('Error','Compruebe los datos introducidos e inténtelo de nuevo','error');
+            this.successful = 'Error, Compruebe los datos introducidos e inténtelo de nuevo';
         }
       });
   }

@@ -1,4 +1,3 @@
-import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,12 +8,11 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
     ProtectedRoutingModule,
-    MaterialModule,
     FormsModule,
   ]
 })

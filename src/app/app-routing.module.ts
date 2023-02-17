@@ -11,8 +11,8 @@ const routes: Routes = [
   },
   {
     path:'dashboard',
-    loadChildren: () => import('./shared/protected.module').then(m => m.ProtectedModule),
-    canActivate: [ValidarTokenGuard,ObtenerProfileGuard],
+    loadChildren: () => import('./protected/protected.module').then(m => m.ProtectedModule),
+    canActivate: [ValidarTokenGuard],
     canLoad: [ValidarTokenGuard]
   },
   {
@@ -22,8 +22,8 @@ const routes: Routes = [
     canLoad: [ValidarTokenGuard]
   },
   {
-    path:'index',
-    loadChildren: () => import('./profile/pages/post-user/post-user-routing.module').then(m => m.PostUserRoutingModule),
+    path:'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     canActivate: [ValidarTokenGuard,ObtenerProfileGuard],
     canLoad: [ValidarTokenGuard]
   },
