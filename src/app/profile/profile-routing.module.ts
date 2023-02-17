@@ -1,3 +1,4 @@
+import { PostsProfileComponent } from './pages/user-profile/posts-profile/posts-profile.component';
 import { DashboardComponent } from './../protected/dashboard/dashboard.component';
 import { ProfileSettingsComponent } from './pages/profile-settings/profile-settings.component';
 import { NgModule } from '@angular/core';
@@ -9,8 +10,11 @@ const routes: Routes = [
     path:'',
     component: DashboardComponent,
     children: [
-      {path:'settings', component: ProfileSettingsComponent},
-      {path:'user', component: UserProfileComponent},
+      {path:'user', component: UserProfileComponent, children: [
+        {path: '', component: PostsProfileComponent},
+        {path:':settings', component: ProfileSettingsComponent},
+      ]},
+      
       {path: '**', redirectTo:''}
     ]
   }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
-  
+
 
   //importar ReactiveFormsModule en el módulo.
   miFormulario: FormGroup = this.fb.group({
@@ -24,6 +24,7 @@ export class LoginComponent {
               private router: Router,
               private authService: AuthService){}
 
+  successful: string = '';
 
 
   login(){
@@ -35,7 +36,7 @@ export class LoginComponent {
         if(resp){
           this.router.navigateByUrl('dashboard');
         }else{
-            Swal.fire('Error','Compruebe los datos introducidos e inténtelo de nuevo','error');
+          this.successful = 'Error, Compruebe los datos introducidos e inténtelo de nuevo';
         }
       });
   }
