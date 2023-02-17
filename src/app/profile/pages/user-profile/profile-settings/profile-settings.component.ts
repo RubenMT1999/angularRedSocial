@@ -1,8 +1,8 @@
-import { UserProfile } from './../../interfaces/interfaceProfile';
+import { UserProfile } from '../../../interfaces/interfaceProfile';
 
 import { Router } from '@angular/router';
-import { ProfileService } from './../../services/profile.service';
-import { AuthService } from './../../../auth/services/auth.service';
+import { ProfileService } from '../../../services/profile.service';
+import { AuthService } from '../../../../auth/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -21,7 +21,7 @@ export class ProfileSettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
 
   get obtenerProfile(){
       return this.profileService.profile;

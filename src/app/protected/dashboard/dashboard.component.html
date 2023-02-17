@@ -2,11 +2,11 @@
   <div>
     <ul class="flex flex-row items-center gap-5">
       <li class="text-[#5DADE2] dark:text-[#5DADE2] text-3xl font-extrabold"><a [routerLink]="['/home']">Talk To Talk.</a></li>
-      
+
         <form autocomplete="off" (ngSubmit)="buscar()">
-          <input type="text" name="termino" (input)="teclaPresionada($event)" [(ngModel)]="termino" placeholder="Search..." 
+          <input type="text" name="termino" (input)="teclaPresionada($event)" [(ngModel)]="termino" placeholder="Search..."
           class="input dark:border-none rounded-md  h-8 ml-10 placeholder:text-[#D0D0D0] bg-[#F0F0F0] dark:bg-[#7c7c7b] dark:placeholder:opacity-50  dark:border-white dark:bg-opacity-20 text-black dark:text-white dark:placeholder:text-white">
-        
+
           <ul class="" >
             <li *ngFor="let perfil of perfilesSugeridos"
                class="">
