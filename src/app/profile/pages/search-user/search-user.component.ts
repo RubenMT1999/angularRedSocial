@@ -17,8 +17,11 @@ export class SearchUserComponent implements OnInit{
 
   public totalSeguidores:any;
 
-  get numeroSeguidores(){
-    return this.followersService.numeroSeguidores;
+  public siguiendo:boolean = false;
+
+
+  get numeroSeguidos(){
+    return this.followersService.numeroSeguidos;
   }
 
   get nombreSeguidores(){
@@ -32,6 +35,18 @@ export class SearchUserComponent implements OnInit{
     return this.usersBuscados;
   }
 
+  get obtenerProfile(){
+    return this.profileService.profile;
+  }
+
+  get numeroSeguidores(){
+    return this.followersService.verNumeroSeguidores;
+  }
+
+  get perfilDeQuienMeSigue(){
+    return this.followersService.listarQuienMeSigue;
+  }
+
   constructor(private profileService: ProfileService,
               private followersService: FollowersService,
               private dashboardComponent: DashboardComponent){}
@@ -40,6 +55,9 @@ export class SearchUserComponent implements OnInit{
   ngOnInit(): void {
     this.followersService.obtenerNumeroSeguidores(this.obtenerBuscados[0].username);
     this.followersService.listarSeguidores(this.obtenerBuscados[0].username);
+    this.loSigues(this.obtenerProfile.username!, this.obtenerBuscados[0].username!);
+    this.followersService.verMisSeguidores(this.obtenerBuscados[0].username);
+    this.followersService.obtenerUsernameSeguidores(this.obtenerBuscados[0].username);
   }
 
              
@@ -47,14 +65,16 @@ export class SearchUserComponent implements OnInit{
     
     this.followersService.seguirUsuario(twitterUsername)
       .subscribe(resp => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Has comenzado a seguir a '+ twitterUsername,
-          showConfirmButton: false,
-          timer: 1500
-        });
-
+        if(resp){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Has comenzado a seguir a '+ twitterUsername,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+        this.ngOnInit();
       });
 
   }
@@ -65,10 +85,35 @@ export class SearchUserComponent implements OnInit{
     this.dashboardComponent.termino = twitterUsername;
     this.dashboardComponent.buscar();
     this.ngOnInit();
-    console.log('ok');
-
   }
 
 
+  loSigues(usernameEmisor:string, usernameReceptor:string){
+    this.followersService.loSigue(usernameEmisor,usernameReceptor)
+      .subscribe(resp => {
+        if(resp){
+          this.siguiendo = true;
+        }else{
+          this.siguiendo = false;
+        }
+      });
+  }
+
+
+  dejarSeguir(twitter_username?:string){
+    this.followersService.dejarDeSeguir(twitter_username)
+      .subscribe(resp => {
+        if(resp){
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Has dejado de seguir a '+ twitter_username,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+        this.ngOnInit();
+      });
+  }
 
 }

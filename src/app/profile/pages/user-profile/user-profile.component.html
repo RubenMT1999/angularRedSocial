@@ -13,6 +13,7 @@
               <h5 class="my-3">{{obtenerProfile.username}}</h5>
               <p class="text-muted mb-1">{{obtenerProfile.bio | titlecase}}</p>
               <p class="text-muted mb-4">{{obtenerProfile.direccion}}</p>
+              <p class="text-muted ">Número de Seguidos:  {{numeroSeguidos}}</p>
               <p class="text-muted mb-4">Número de Seguidores:  {{numeroSeguidores}}</p>
               <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-outline-primary ms-1">Mensaje</button>
@@ -104,13 +105,20 @@
 
       </div>
 
-      <p class="mt-2 mb-3">Seguidores:</p>
+      <p class="mt-2 mb-3">Siguiendo:</p>
       <div class="card mb-3" *ngFor="let seguidor of nombreSeguidores">
-        <div class="card-body">
-          {{seguidor}}
-        </div>
+        <button type="button" class="btn btn-primary"
+          (click)="perfilSeguidores(seguidor)">
+          {{seguidor}}</button>
       </div>
 
+
+      <p class="mt-2 mb-3">Seguidores:</p>
+      <div class="card mb-3" *ngFor="let seguidor of perfilDeQuienMeSigue">
+        <button type="button" class="btn btn-primary"
+          (click)="perfilSeguidores(seguidor)">
+          {{seguidor}}</button>
+      </div>
 
     </div>
 

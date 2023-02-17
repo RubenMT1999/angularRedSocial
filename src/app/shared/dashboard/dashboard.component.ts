@@ -67,7 +67,12 @@ export class DashboardComponent implements OnInit{
             this.router.navigateByUrl('profile/user')
           }
           else if(resp){
-            this.router.navigateByUrl('profile/search')
+            const currentUrl = 'profile/search';
+            this.router.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+              this.router.navigate([currentUrl]);
+            });
+
+           /*  this.router.navigateByUrl('profile/search') */
           }
           else{
               const links = document.querySelectorAll('.form-control');

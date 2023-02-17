@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { getLocaleTimeFormat } from '@angular/common';
 import { FollowersService } from '../../services/followers.service';
+import { DashboardComponent } from '../../../shared/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,8 +19,8 @@ export class UserProfileComponent implements OnInit{
 
   public someValue:string= '';
 
-  get numeroSeguidores(){
-    return this.followerService.numeroSeguidores;
+  get numeroSeguidos(){
+    return this.followerService.numeroSeguidos;
   }
 
   get nombreSeguidores(){
@@ -38,18 +39,29 @@ export class UserProfileComponent implements OnInit{
     return this.postService.usuarioPosts;
   }
 
+  get numeroSeguidores(){
+    return this.followerService.verNumeroSeguidores;
+  }
+
+  get perfilDeQuienMeSigue(){
+    return this.followerService.listarQuienMeSigue;
+  }
+
   constructor(private fb: FormBuilder,
               private profileService: ProfileService,
               private authService: AuthService,
               private postService: PostService,
               private followerService: FollowersService,
-              private router: Router){
+              private router: Router,
+              private dashboardComponent: DashboardComponent){
   }
 
   ngOnInit() {
     this.listarPosts();
     this.followerService.obtenerNumeroSeguidores(this.obtenerProfile.username);
     this.followerService.listarSeguidores(this.obtenerProfile.username);
+    this.followerService.verMisSeguidores(this.obtenerProfile.username);
+    this.followerService.obtenerUsernameSeguidores(this.obtenerProfile.username);
   }
 
   miFormulario: FormGroup = this.fb.group({
@@ -127,6 +139,12 @@ export class UserProfileComponent implements OnInit{
   }
 
 
+  perfilSeguidores(twitterUsername:string){
+
+    this.dashboardComponent.termino = twitterUsername;
+    this.dashboardComponent.buscar();
+
+  }
 
 
 }

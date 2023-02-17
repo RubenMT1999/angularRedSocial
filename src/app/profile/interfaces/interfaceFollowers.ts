@@ -11,3 +11,8 @@ export interface NombreSeguidores{
 export interface Seguido{
     resutado?: string
 }
+
+
+export interface IdFollows{
+    idFollow?: number[]
+}
