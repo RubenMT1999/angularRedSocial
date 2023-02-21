@@ -1,0 +1,103 @@
+<div class="alert alert-error shadow-lg mt-6" *ngIf="errorMessage">
+  <div class="">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    <span> {{errorMessage}} </span>
+  </div>
+</div>
+
+<div class="w-[800px] bg-white rounded-lg">
+    
+    <h2 class="text-black font-semibold text-2xl dark:text-white mt-5 p-3">Editar Perfil</h2>
+
+    <form class="flex flex-col p-6" [formGroup]="miFormulario" (ngSubmit)="editProfile()">
+
+
+      <div class="flex flex-row gap-12">
+
+        <div class="w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Nombre</span>
+          </label>
+          <input type="text" placeholder="" class="input input-bordered bg-[#F0F0F0] w-full max-w-xs text-black" formControlName="name"/>
+          <label class="label">
+            <span class="label-text-alt text-red-800" *ngIf="campoEsValido('name')">El nombre debe tener más de 3 caracteres.</span>
+          </label>
+        </div>
+        <div class="w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Username</span>
+          </label>
+          <input type="text" placeholder="" class="input input-bordered bg-[#F0F0F0] w-full max-w-xs text-black" formControlName="twitter_username"/>
+          <label class="label">
+            <span class="label-text-alt text-red-800" *ngIf="campoEsValido('twitter_username')">El Username debe tener más de 5 caracteres</span>
+          </label>
+        </div>
+
+      </div>
+      
+      <div class="flex flex-row gap-12 mt-2">
+
+        <div class="w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Dirección</span>
+          </label>
+          <input type="text" placeholder="Website" class="input input-bordered bg-[#F0F0F0] w-full max-w-xs text-black" formControlName="location"/>
+        </div>
+        <div class="w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Número de móvil</span>
+          </label>
+          <input type="text" placeholder="Móvil" class="input input-bordered bg-[#F0F0F0] w-full max-w-xs text-black" formControlName="phone_number"/>
+        </div>
+        
+      </div>
+
+
+      <div class="flex flex-row gap-12 mt-2">
+
+        <div class="w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Web Url</span>
+          </label>
+          <input type="text" placeholder="Website" class="input input-bordered bg-[#F0F0F0] w-full max-w-xs text-black" formControlName="website_url"/>
+        </div>
+        <div class="w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Empresa</span>
+          </label>
+          <input type="text" placeholder="Empresa" class="input input-bordered bg-[#F0F0F0] w-full max-w-xs text-black" formControlName="company"/>
+        </div>
+
+      </div>
+
+      <div class="w-full max-w-xs mt-2">
+        <label class="label">
+          <span class="label-text">Fecha de Nacimiento</span>
+        </label>
+        <input type="date" placeholder="" class="input input-bordered bg-[#F0F0F0] w-full max-w-xs text-black" formControlName="date_of_birth"/>
+        <label class="label">
+          <span class="label-text-alt text-red-800" *ngIf="campoEsValido('date_of_birth')">Establece una fecha pasada.</span>
+        </label>
+      </div>
+
+      <div class="w-full max-w-ws mt-1"> 
+        <label class="label">
+          <span class="label-text">Biografía</span>
+        </label>
+        <input type="text" placeholder="" class="textarea w-full bg-[#F0F0F0] max-x-xs text-black" formControlName="bio">
+        <label class="label">
+          <span class="label-text-alt text-red-800" *ngIf="campoEsValido('bio')">No puede tener más de 40 carácteres</span>
+        </label>
+      </div>
+
+
+      <div class="flex justify-end mt-6">
+        <button class="btn text-white" type="submit" [disabled]="miFormulario.invalid">Guardar</button>
+      </div>
+
+      
+
+    </form>
+
+</div>
+

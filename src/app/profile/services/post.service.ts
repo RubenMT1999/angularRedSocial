@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { PostFollower } from './../interfaces/interfacePost';
 import { environment } from '../../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { ProfileStatus } from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';
-import {PostsUsers, ArrayPostUsers, PostStatus, ArrayPostFollowers, PostFollower} from '../interfaces/interfacePost';
+import { PostsUsers, ArrayPostUsers, PostStatus, ArrayPostFollowers } from '../interfaces/interfacePost';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,7 @@ export class PostService {
       );
   }
 
-  obtenerPostsFollowers(email?: string){
+    obtenerPostsFollowers(email?: string){
     const url = `${this.baseUrl}/post/user`;
     const body = {email};
 

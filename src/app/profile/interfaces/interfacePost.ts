@@ -8,15 +8,13 @@ export interface PostsUsers {
 }
 
 export interface PostFollower {
-  username?: string;
-  pais?: string
-  message?: string;
-  image?: string;
-  relio?: number;
-  publication?: PublicationDate;
-}
-
-
+    username?: string;
+    pais?: string
+    message?: string;
+    image?: string;
+    relio?: number;
+    publication?: PublicationDate;
+  }
 
 
 export interface PublicationDate {
@@ -31,7 +29,7 @@ export interface ArrayPostUsers{
 }
 
 export interface ArrayPostFollowers{
-  userPosts?: PostFollower[]
+    userPosts?: PostFollower[]
 }
 
 export interface PostStatus {

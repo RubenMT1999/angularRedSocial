@@ -5,8 +5,8 @@ export interface UserProfile {
     username?: string;
     empresa?: string;
     direccion?: string;
-    fecha?: DateOfBirth;
     phone_number?: string;
+    fecha?: Date;
 }
 
 export interface ProfileStatus {
@@ -25,8 +25,8 @@ export interface UserObtener {
     username?:      string;
     company?:       string;
     location?:      string;
-    date_of_birth?: DateOfBirth;
     phone_number?: string;
+    date_of_birth?: DateOfBirth;
 }
 
 export interface DateOfBirth {

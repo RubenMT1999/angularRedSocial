@@ -9,6 +9,8 @@ import {ProfileService} from "../../../services/profile.service";
   styleUrls: ['./posts-profile.component.css']
 })
 export class PostsProfileComponent {
+
+  public someValue:string= '';
   ngOnInit() {
     this.listarPost();
   }
@@ -33,6 +35,27 @@ export class PostsProfileComponent {
   }
   get obtenerProfile(){
     return this.profileService.profile;
+  }
+  userPost(){
+    const { message, image, relio, publication_date } = this.miFormulario.value;
+    const usermail = this.authService.usuario.username!;
+
+    console.log(this.miFormulario.value);
+
+    this.postService.crearPost(usermail, message, image, relio, publication_date)
+      .subscribe(resp => {
+        if(resp){
+
+
+          //limpiamos el valor del input.
+          this.someValue= '';
+          //ejecutamos onInit para refrescar la página y aparezca el mensaje.
+          this.ngOnInit();
+        }else{
+
+        }
+
+      })
   }
 
 }
