@@ -44,12 +44,12 @@ export class PostsProfileComponent {
     return this.profileService.profile;
   }
   userPost(){
-    const { message, image, relio, publication_date } = this.miFormulario.value;
+    const { message, image,  publication_date } = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
 
     console.log(this.miFormulario.value);
 
-    this.postService.crearPost(usermail, message, image, relio, publication_date)
+    this.postService.crearPost(usermail, message, image,  publication_date)
       .subscribe(resp => {
         if(resp){
 
@@ -64,5 +64,14 @@ export class PostsProfileComponent {
 
       })
   }
+  borrarPost(id: number) {
+    this.postService.borrarPost(id)
+      .subscribe(resp => {
+        this.ngOnInit();
+      })
+
+  }
+
+
 
 }
