@@ -7,16 +7,13 @@
 
     </div>
 
-    <div class="flex justify-center w-[800px] mt-12">
+    <div class="flex justify-center w-[800px]">
 
-      <div></div>
 
-      <div *ngIf="router.url === '/profile/user/settings'; else elseBlock">
-        <app-profile-settings></app-profile-settings>
-      </div>
-      <ng-template #elseBlock>
-        <app-posts-profile></app-posts-profile>
-      </ng-template>
+        <router-outlet></router-outlet>
+        
+
+
     </div>
 
 </div>

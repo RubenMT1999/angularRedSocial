@@ -21,6 +21,7 @@ export class ProfileSettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  errorMessage:string = '';
 
 
   get obtenerProfile(){
@@ -36,6 +37,7 @@ export class ProfileSettingsComponent implements OnInit {
     company: [this.profileService.profile.empresa],
     location: [this.profileService.profile.direccion],
     date_of_birth: [this.formatDate(this.profileService.profile.fecha)],
+    phone_number: [this.profileService.profile.phone]
   });
 
 /*   this.miFormulario.get('date_of_birth').patchValue(this.formatDate(new Date())); */
@@ -49,42 +51,37 @@ export class ProfileSettingsComponent implements OnInit {
     return [year, month, day].join('-');
   }
 
-  //
-  // editProfile(){
-  //   const { name, bio, website_url, twitter_username,
-  //     company, location, date_of_birth } = this.miFormulario.value;
-  //
-  //
-  //   const usermail = this.authService.usuario.username!;
-  //   console.log(this.miFormulario.value);
-  //
-  //   this.profileService.setProfile(name, bio, website_url, twitter_username,
-  //     company,location,date_of_birth,usermail)
-  //           .subscribe(resp => {
-  //             if(resp){
-  //               Swal.fire({
-  //                 position: 'center',
-  //                 icon: 'success',
-  //                 title: 'Tu perfil ha sido editado con éxito',
-  //                 showConfirmButton: false,
-  //                 timer: 1500
-  //               });
-  //               this.profileService.userProfile = {
-  //                 name: this.miFormulario.value.name!,
-  //                 bio: this.miFormulario.value.bio!,
-  //                 weburl: this.miFormulario.value.website_url!,
-  //                 username: this.miFormulario.value.twitter_username!,
-  //                 empresa: this.miFormulario.value.company!,
-  //                 direccion: this.miFormulario.value.location!,
-  //                 fecha: this.miFormulario.value.date_of_birth!
-  //               };
-  //               /* console.log(this.profileService.profile); */
-  //               this.router.navigateByUrl('dashboard');
-  //             }else{
-  //               Swal.fire('Error','Compruebe los datos introducidos e inténtelo de nuevo','error');
-  //             }
-  //           });
-  // }
+  
+  editProfile(){
+    const { name, bio, website_url, twitter_username,
+      company, location, date_of_birth,phone_number } = this.miFormulario.value;
+  
+  
+    const usermail = this.authService.usuario.username!;
+    console.log(this.miFormulario.value);
+  
+    this.profileService.setProfile(name, bio, website_url, twitter_username,
+      company,location,date_of_birth,usermail, phone_number)
+            .subscribe(resp => {
+              if(resp){
+                
+                this.profileService.userProfile = {
+                  name: this.miFormulario.value.name!,
+                  bio: this.miFormulario.value.bio!,
+                  weburl: this.miFormulario.value.website_url!,
+                  username: this.miFormulario.value.twitter_username!,
+                  empresa: this.miFormulario.value.company!,
+                  direccion: this.miFormulario.value.location!,
+                  fecha: this.miFormulario.value.date_of_birth!,
+                  phone: this.miFormulario.value.phone_number!
+                };
+                /* console.log(this.profileService.profile); */
+                this.router.navigateByUrl('dashboard');
+              }else{
+                this.errorMessage = "Error, comprueba los datos introducidos e inténtelo de nuevo"
+              }
+            });
+  }
 
 
   campoEsValido(campo: string){

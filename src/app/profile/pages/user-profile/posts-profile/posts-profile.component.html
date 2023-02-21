@@ -1,16 +1,20 @@
 
-<div class="flex flex-col w-[800px] p-2 bg-white rounded-lg dark:bg-[#191919]">
+<div class="flex flex-col w-[800px] mt-12 p-2 bg-white rounded-lg dark:bg-[#191919]">
 
     <div class="flex flex-col justify-center mt-4 ">
         <div class="flex flex-col">
+            
             <div class="flex justify-center">
-                <input type="text" placeholder="¿ En qué estás pensando ?" class="input rounded-2xl w-[725px] ml-4 bg-[#F0F0F0] dark:border-none placeholder:text-[#D0D0D0] dark:bg-[#7c7c7b]  text-black dark:text-white dark:placeholder:text-white dark:placeholder:opacity-50 dark:bg-opacity-20">
+                <form [formGroup]="miFormulario" (ngSubmit)="userPost()">
+                    <input type="text" [(ngModel)]="someValue" formControlName="message" placeholder="¿ En qué estás pensando ?" class="input rounded-2xl w-[725px] ml-4 bg-[#F0F0F0] dark:border-none placeholder:text-[#D0D0D0] dark:bg-[#7c7c7b]  text-black dark:text-white dark:placeholder:text-white dark:placeholder:opacity-50 dark:bg-opacity-20">
+                    <div class="flex flex-row items-center justify-end mt-3 p-1 gap-3">
+                        <svg class="w-8 cursor-pointer stroke-1 dark:fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48"><defs></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M56,0H8A8,8,0,0,0,0,8V40a7.27,7.27,0,0,0,.48,2.64A8.05,8.05,0,0,0,4,46.91,8.1,8.1,0,0,0,8,48H56a8.08,8.08,0,0,0,6.72-3.65A8.18,8.18,0,0,0,64,40V8A8,8,0,0,0,56,0ZM33,42.67H8a2.35,2.35,0,0,1-.83-.16L21.65,22.75,33.52,34.61l3.76,3.76,4.27,4.3ZM58.67,40A2.68,2.68,0,0,1,56,42.67H49.12l-8-8.06,6.82-6.74,10.78,12Zm0-8.13L50,22.21a2.72,2.72,0,0,0-1.89-.88,2.53,2.53,0,0,0-1.95.78l-8.82,8.74L23.23,16.77A2.84,2.84,0,0,0,21.12,16a2.76,2.76,0,0,0-1.95,1.09L5.33,36V8A2.68,2.68,0,0,1,8,5.33H56A2.68,2.68,0,0,1,58.67,8Z"/><circle class="cls-1" cx="37.33" cy="18.67" r="5.33"/></g></g></svg>
+                        <button class="btn btn-primary btn-sm" type="submit">Post</button>
+                    </div>
+                </form>
             </div>
 
-            <div class="flex flex-row items-center justify-end mt-3 p-1">
-                <svg class="w-8 cursor-pointer stroke-1 dark:fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 48"><defs></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M56,0H8A8,8,0,0,0,0,8V40a7.27,7.27,0,0,0,.48,2.64A8.05,8.05,0,0,0,4,46.91,8.1,8.1,0,0,0,8,48H56a8.08,8.08,0,0,0,6.72-3.65A8.18,8.18,0,0,0,64,40V8A8,8,0,0,0,56,0ZM33,42.67H8a2.35,2.35,0,0,1-.83-.16L21.65,22.75,33.52,34.61l3.76,3.76,4.27,4.3ZM58.67,40A2.68,2.68,0,0,1,56,42.67H49.12l-8-8.06,6.82-6.74,10.78,12Zm0-8.13L50,22.21a2.72,2.72,0,0,0-1.89-.88,2.53,2.53,0,0,0-1.95.78l-8.82,8.74L23.23,16.77A2.84,2.84,0,0,0,21.12,16a2.76,2.76,0,0,0-1.95,1.09L5.33,36V8A2.68,2.68,0,0,1,8,5.33H56A2.68,2.68,0,0,1,58.67,8Z"/><circle class="cls-1" cx="37.33" cy="18.67" r="5.33"/></g></g></svg>
-                <button class="btn btn-primary btn-sm mx-4">Post</button>
-            </div>
+            
         </div>
 
 
@@ -18,7 +22,7 @@
 
 </div>
 
-<div class="flex flex-col mt-6 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]">
+<div class="flex flex-col mt-6 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]" *ngFor="let post of obtenerPosts">
 
     <div class="flex flex-row items-center justify-between">
         <div class="flex flex-row">
@@ -37,8 +41,8 @@
     </div>
 
     <div class="mt-4 opacity-60">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi doloribus asperiores molestias perferendis ad quod illum nisi dolorum sed ipsam. Veritatis exercitationem necessitatibus, minus recusandae quod a dignissimos quibusdam id?
-        Quos tempora odit laboriosam aliquam!
+        {{ post.message }}
+        {{post.publication}}
     </div>
 
     <hr class="mt-2 dark:opacity-40">

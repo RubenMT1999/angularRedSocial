@@ -13,10 +13,9 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {path:'user', component: UserProfileComponent, children: [
-
-      { path: 'settings', component: ProfileSettingsComponent},
-        ]},
-      { path: '', component: PostsProfileComponent},
+        { path: '', component: PostsProfileComponent},
+        { path: 'settings', component: ProfileSettingsComponent},
+      ]}, 
       {path: '**', redirectTo:''}
     ]
   }

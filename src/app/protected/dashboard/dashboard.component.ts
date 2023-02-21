@@ -50,12 +50,13 @@ export class DashboardComponent implements OnInit{
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (localStorage['theme'] === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
-      document.documentElement.classList.remove('light')
     } else {
-      document.documentElement.classList.add('light')
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.add('dark')
     }
 
+    if (localStorage['theme'] === '' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: )').matches)) {
+      document.documentElement.classList.add('')
+    }   
     // Whenever the user explicitly chooses light mode
     localStorage['theme'] = 'light'
 

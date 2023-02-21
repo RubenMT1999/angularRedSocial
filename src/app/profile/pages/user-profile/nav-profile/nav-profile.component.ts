@@ -24,8 +24,8 @@ export class NavProfileComponent {
   }
 
   onEditProfile(){
-    // this.router.navigate(['settings'], {relativeTo: this.route})
-    this.router.navigateByUrl('setting')
+    this.router.navigateByUrl('/profile/user/settings')
+    // this.router.navigateByUrl('setting')
   }
 
 
