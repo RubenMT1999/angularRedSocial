@@ -10,20 +10,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavProfileComponent {
 
-  get obtenerProfile(){
+  get obtenerProfile() {
     return this.profileService.profile;
   }
 
-  get obtenerUser(){
+  get obtenerUser() {
     return this.authService.usuario;
   }
 
   constructor(private profileService: ProfileService,
               private authService: AuthService,
-              private route: ActivatedRoute, private router: Router){
+              private route: ActivatedRoute, private router: Router) {
   }
 
-  onEditProfile(){
+  onEditProfile() {
     this.router.navigateByUrl('/profile/user/settings')
     // this.router.navigateByUrl('setting')
   }

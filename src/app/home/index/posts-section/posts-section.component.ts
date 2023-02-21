@@ -1,8 +1,7 @@
 import { PostService } from './../../../profile/services/post.service';
 import { AuthService } from './../../../auth/services/auth.service';
 import { Component } from '@angular/core';
-import {AuthService} from "../../../auth/services/auth.service";
-import {PostService} from "../../../profile/services/post.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-posts-section',
@@ -10,6 +9,14 @@ import {PostService} from "../../../profile/services/post.service";
   styleUrls: ['./posts-section.component.css']
 })
 export class PostsSectionComponent {
+
+  miFormulario: FormGroup = this.fb.group({
+    message: ['', [Validators.required, Validators.maxLength(50)]],
+    image: ['prueba', [Validators.required, Validators.maxLength(50)]],
+    publication_date: new Date()
+  });
+
+  public someValue:string= '';
   ngOnInit() {
     this.listarPost();
   }
@@ -18,7 +25,8 @@ export class PostsSectionComponent {
     return this.postService.usuarioPostsFollower;
   }
 
-  constructor(private authService: AuthService,
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
               private postService: PostService) {
   }
 
@@ -30,27 +38,28 @@ export class PostsSectionComponent {
 
       })
   }
-
-
-  ngOnInit() {
-    this.listarPost();
-  }
-
-  get obtenerPostFollowers(){
-    return this.postService.usuarioPostsFollower;
-  }
-
-  constructor(private authService: AuthService,
-              private postService: PostService) {
-  }
-
-  listarPost(){
+  userPost(){
+    const { message, image, relio, publication_date } = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
 
-    this.postService.obtenerPostsFollowers(usermail)
-      .subscribe(resp =>{
+    console.log(this.miFormulario.value);
+
+    this.postService.crearPost(usermail, message, image, relio, publication_date)
+      .subscribe(resp => {
+        if(resp){
+
+
+          //limpiamos el valor del input.
+          this.someValue= '';
+          //ejecutamos onInit para refrescar la página y aparezca el mensaje.
+          this.ngOnInit();
+        }else{
+
+        }
 
       })
   }
+
+
 
 }

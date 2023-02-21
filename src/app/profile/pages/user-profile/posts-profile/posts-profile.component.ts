@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AuthService} from "../../../../auth/services/auth.service";
 import {PostService} from "../../../services/post.service";
 import {ProfileService} from "../../../services/profile.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-posts-profile',
@@ -9,6 +10,11 @@ import {ProfileService} from "../../../services/profile.service";
   styleUrls: ['./posts-profile.component.css']
 })
 export class PostsProfileComponent {
+  miFormulario: FormGroup = this.fb.group({
+    message: ['', [Validators.required, Validators.maxLength(50)]],
+    image: ['prueba', [Validators.required, Validators.maxLength(50)]],
+    publication_date: new Date()
+  });
 
   public someValue:string= '';
   ngOnInit() {
@@ -19,7 +25,8 @@ export class PostsProfileComponent {
     return this.postService.usuarioPosts;
   }
 
-  constructor(private authService: AuthService,
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
               private postService: PostService,
               private profileService: ProfileService) {
   }

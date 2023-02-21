@@ -37,7 +37,7 @@ export class ProfileSettingsComponent implements OnInit {
     company: [this.profileService.profile.empresa],
     location: [this.profileService.profile.direccion],
     date_of_birth: [this.formatDate(this.profileService.profile.fecha)],
-    phone_number: [this.profileService.profile.phone]
+    phone_number: [this.profileService.profile.phone_number]
   });
 
 /*   this.miFormulario.get('date_of_birth').patchValue(this.formatDate(new Date())); */
@@ -51,20 +51,20 @@ export class ProfileSettingsComponent implements OnInit {
     return [year, month, day].join('-');
   }
 
-  
+
   editProfile(){
     const { name, bio, website_url, twitter_username,
       company, location, date_of_birth,phone_number } = this.miFormulario.value;
-  
-  
+
+
     const usermail = this.authService.usuario.username!;
     console.log(this.miFormulario.value);
-  
+
     this.profileService.setProfile(name, bio, website_url, twitter_username,
       company,location,date_of_birth,usermail, phone_number)
             .subscribe(resp => {
               if(resp){
-                
+
                 this.profileService.userProfile = {
                   name: this.miFormulario.value.name!,
                   bio: this.miFormulario.value.bio!,
@@ -73,10 +73,10 @@ export class ProfileSettingsComponent implements OnInit {
                   empresa: this.miFormulario.value.company!,
                   direccion: this.miFormulario.value.location!,
                   fecha: this.miFormulario.value.date_of_birth!,
-                  phone: this.miFormulario.value.phone_number!
+                  phone_number: this.miFormulario.value.phone_number!
                 };
                 /* console.log(this.profileService.profile); */
-                this.router.navigateByUrl('dashboard');
+                this.router.navigateByUrl('profile/user');
               }else{
                 this.errorMessage = "Error, comprueba los datos introducidos e inténtelo de nuevo"
               }

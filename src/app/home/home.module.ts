@@ -16,9 +16,10 @@ import { IndexComponent } from './index/index.component';
     PostsSectionComponent,
     IndexComponent
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        ReactiveFormsModule,
+    ]
 })
 export class HomeModule { }

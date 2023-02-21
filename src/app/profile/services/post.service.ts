@@ -25,7 +25,7 @@ export class PostService {
 
   crearPost(id_user_id?:string, message?:string, image?:string, relio?:number, publication_date?:Date){
     const url = `${this.baseUrl}/post/create`;
-    const body = {id_user_id, message, image, relio, publication_date};
+    const body = {id_user_id, message, image, publication_date};
 
     return this.http.post<ProfileStatus>(url, body)
       .pipe(
