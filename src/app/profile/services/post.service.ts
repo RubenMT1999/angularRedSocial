@@ -23,7 +23,7 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  crearPost(id_user_id?:string, message?:string, image?:string, relio?:number, publication_date?:Date){
+  crearPost(id_user_id?:string, message?:string, image?:string, publication_date?:Date){
     const url = `${this.baseUrl}/post/create`;
     const body = {id_user_id, message, image, publication_date};
 
