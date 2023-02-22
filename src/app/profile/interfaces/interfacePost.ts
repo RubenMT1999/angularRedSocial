@@ -3,7 +3,7 @@ export interface PostsUsers {
     id?: number;
     message?: string;
     image?: string;
-    relio?: number;
+    like?: number;
     publication?: PublicationDate;
 }
 
@@ -12,7 +12,7 @@ export interface PostFollower {
     pais?: string
     message?: string;
     image?: string;
-    relio?: number;
+    like?: number;
     publication?: PublicationDate;
   }
 

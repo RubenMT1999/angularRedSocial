@@ -39,7 +39,7 @@ export class PostsSectionComponent {
       })
   }
   userPost(){
-    const { message, image, publication_date } = this.miFormulario.value;
+    const { message, image, publication_date} = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
 
     console.log(this.miFormulario.value);
