@@ -8,6 +8,7 @@ export interface PostsUsers {
 }
 
 export interface PostFollower {
+    id?: number;
     username?: string;
     pais?: string
     message?: string;

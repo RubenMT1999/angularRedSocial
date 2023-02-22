@@ -43,6 +43,17 @@ export class PostsProfileComponent {
   get obtenerProfile(){
     return this.profileService.profile;
   }
+  // postLike(id: number) {
+  //   this.postService.crearLike(id)
+  //     .subscribe(resp => {
+  //       if(resp){
+  //         //ejecutamos onInit para refrescar la página y aparezca el mensaje.
+  //         this.ngOnInit();
+  //       }else{
+  //       }
+  //     })
+  // }
+
   userPost(){
     const { message, image,  publication_date } = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
