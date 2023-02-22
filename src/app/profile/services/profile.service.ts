@@ -1,6 +1,6 @@
 import { map, catchError, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { UserProfile, ProfileStatus, ObtenerProfile } from './../interfaces/interfaceProfile';
+import { UserProfile, ProfileStatus, ObtenerProfile, DateOfBirth } from './../interfaces/interfaceProfile';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 
@@ -59,9 +59,10 @@ export class ProfileService {
                 username: resp.userProfile[0].username,
                 empresa: resp.userProfile[0].company,
                 direccion: resp.userProfile[0].location,
-                // fecha: resp.userProfile[0].date_of_birth,
                 // phone_number: resp.userProfile[0].phone_number
-              } 
+                // DateOfBirth: resp.userProfile[0].date_of_birth,
+
+              }
 
               console.log(this.userProfile.username);
               return true;
@@ -94,7 +95,7 @@ export class ProfileService {
     const body = {username};
 
     return this.http.post<ObtenerProfile>(url,body)
-      
+
   }
 
 

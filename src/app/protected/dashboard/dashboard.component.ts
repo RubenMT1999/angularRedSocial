@@ -2,7 +2,7 @@ import { LoginComponent } from './../../auth/pages/login/login.component';
 
 import { AuthService } from './../../auth/services/auth.service';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Subject, debounceTime, catchError } from 'rxjs';
 import { ProfileService } from 'src/app/profile/services/profile.service';
 import { UserProfile, ObtenerProfile } from '../../profile/interfaces/interfaceProfile';
@@ -32,6 +32,15 @@ export class DashboardComponent implements OnInit{
               private auth: AuthService,private profileService: ProfileService){}
 
 
+  get obtenerProfile(){
+    return this.profileService.profile;
+  }
+
+  get obtenerUser(){
+    return this.auth.usuario;
+  }
+
+
 
   logout(){
     this.router.navigateByUrl('/auth')
@@ -50,12 +59,13 @@ export class DashboardComponent implements OnInit{
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
     if (localStorage['theme'] === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
-      document.documentElement.classList.remove('light')
     } else {
-      document.documentElement.classList.add('light')
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.add('dark')
     }
 
+    if (localStorage['theme'] === '' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: )').matches)) {
+      document.documentElement.classList.add('')
+    }   
     // Whenever the user explicitly chooses light mode
     localStorage['theme'] = 'light'
 
@@ -71,9 +81,9 @@ export class DashboardComponent implements OnInit{
       .pipe(debounceTime(300))
       .subscribe(valor => {
         this.sugerencias(valor);
-    });
+      });
   }
-  
+
   get profile(){
     return this.profileService.profile;
   }
@@ -82,24 +92,24 @@ export class DashboardComponent implements OnInit{
     console.log(this.termino);
 
     this.profileService.buscarUsuarios(this.termino)
-        .subscribe(resp => {
-          //debo activar el obtener-profile.guard para obtener primero el profile username,
-          //de lo contrario username será undefined.
-          if(this.termino == this.profile.username){
-            this.router.navigateByUrl('profile/user')
-          }
-          else if(resp){
-            this.router.navigateByUrl('profile/search')
-          }
-          else{
-              const links = document.querySelectorAll('.form-control');
-              links.forEach(elem => {
-              elem.classList.add('is-invalid');
-            })
-          }
-        
-  })
-}
+      .subscribe(resp => {
+        //debo activar el obtener-profile.guard para obtener primero el profile username,
+        //de lo contrario username será undefined.
+        if(this.termino == this.profile.username){
+          this.router.navigateByUrl('profile/user')
+        }
+        else if(resp){
+          this.router.navigateByUrl('profile/search')
+        }
+        else{
+          const links = document.querySelectorAll('.form-control');
+          links.forEach(elem => {
+            elem.classList.add('is-invalid');
+          })
+        }
+
+      })
+  }
 
   teclaPresionada(event: any){
     this.debouncer.next(this.termino);
@@ -110,15 +120,15 @@ export class DashboardComponent implements OnInit{
     const links = document.querySelectorAll('.form-control');
     links.forEach(elem => {
       elem.classList.remove('is-invalid');
-      })
+    })
 
     this.profileService.sugerirUsuarios(termino)
-        .subscribe(resp => {
-          if(resp && termino.length>0){
-            this.perfilesSugeridos = resp.userProfile.splice(0,3);
-          }else{
-            this.perfilesSugeridos = [];
-          }
+      .subscribe(resp => {
+        if(resp && termino.length>0){
+          this.perfilesSugeridos = resp.userProfile.splice(0,3);
+        }else{
+          this.perfilesSugeridos = [];
+        }
       });
 
   }

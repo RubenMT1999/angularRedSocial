@@ -34,7 +34,7 @@ export class LoginComponent {
     this.authService.login(email,password)
       .subscribe(resp => {
         if(resp){
-          this.router.navigateByUrl('dashboard');
+          this.router.navigateByUrl('home');
         }else{
           this.successful = 'Error, Compruebe los datos introducidos e inténtelo de nuevo';
         }
