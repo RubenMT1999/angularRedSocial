@@ -43,8 +43,19 @@ export class PostsProfileComponent {
   get obtenerProfile(){
     return this.profileService.profile;
   }
+  // postLike(id: number) {
+  //   this.postService.crearLike(id)
+  //     .subscribe(resp => {
+  //       if(resp){
+  //         //ejecutamos onInit para refrescar la página y aparezca el mensaje.
+  //         this.ngOnInit();
+  //       }else{
+  //       }
+  //     })
+  // }
+
   userPost(){
-    const { message, image, publication_date } = this.miFormulario.value;
+    const { message, image,  publication_date } = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
 
     console.log(this.miFormulario.value);
@@ -64,5 +75,14 @@ export class PostsProfileComponent {
 
       })
   }
+  borrarPost(id: number) {
+    this.postService.borrarPost(id)
+      .subscribe(resp => {
+        this.ngOnInit();
+      })
+
+  }
+
+
 
 }

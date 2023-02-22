@@ -38,8 +38,20 @@ export class PostsSectionComponent {
 
       })
   }
+  postLike(id: number) {
+    const usermail = this.authService.usuario.username!;
+    this.postService.crearLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else{
+        }
+      })
+  }
+
+
   userPost(){
-    const { message, image, publication_date } = this.miFormulario.value;
+    const { message, image, publication_date} = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
 
     console.log(this.miFormulario.value);
