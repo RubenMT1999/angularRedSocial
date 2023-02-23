@@ -100,8 +100,9 @@ export class DashboardComponent implements OnInit{
         }
 
         else if(resp) {
+          console.log(resp)
           const currentUrl = 'profile/search';
-          this.router.navigateByUrl('/dashboard', {skipLocationChange: true}).then(() => {
+          this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
             this.router.navigate([currentUrl]);
           });
         }

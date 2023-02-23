@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PostFollower } from './../interfaces/interfacePost';
+import {PostFollower, PostLike} from './../interfaces/interfacePost';
 import { environment } from '../../../environments/environment.prod';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { ProfileStatus } from '../interfaces/interfaceProfile';

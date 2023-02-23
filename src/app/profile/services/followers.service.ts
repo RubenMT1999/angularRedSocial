@@ -51,6 +51,7 @@ export class FollowersService {
     return this.http.post<NumeroSeguidores>(url,body)
       .subscribe(resp => {
         this.totalSeguidores = resp.array;
+
       });
   }
 
@@ -111,7 +112,7 @@ export class FollowersService {
         body: {
           twitter_username: twitter_username
         }
-        
+
       };
 
       return this.http.delete<Seguido>(url,options)

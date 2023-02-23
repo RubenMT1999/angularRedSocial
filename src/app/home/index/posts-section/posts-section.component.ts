@@ -34,15 +34,6 @@ export class PostsSectionComponent {
   }
 
 
-  comentariosDisponible(){
-    if (this.comentario==false){
-      this.comentario = true;
-    }else{
-      this.comentario = false;
-    }
-  }
-
-
   listarPost(){
     const usermail = this.authService.usuario.username!;
 
@@ -102,17 +93,6 @@ export class PostsSectionComponent {
       })
   }
 
-  postLike(id: number) {
-    const usermail = this.authService.usuario.username!;
-    this.postService.crearLike(id)
-      .subscribe(resp => {
-        if(resp){
-          this.ngOnInit();
-        }else{
-        }
-
-      })
-  }
 
 
 

@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {UserProfile} from "../../interfaces/interfaceProfile";
+import {ProfileService} from "../../services/profile.service";
 
-import { ProfileService } from '../../../profile/services/profile.service';
-import { DashboardComponent } from '../../../protected/dashboard/dashboard.component';
-import { UserProfile } from '../../../profile/interfaces/interfaceProfile';
-import { FollowersService } from '../../services/followers.service';
+import {DashboardComponent} from "../../../protected/dashboard/dashboard.component";
+import {FollowersService} from "../../services/followers.service";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-nav-search-user',
-  templateUrl: './nav-search-user.component.html',
-  styleUrls: ['./nav-search-user.component.css']
+  selector: 'app-search-user',
+  templateUrl: './search-user.component.html',
+  styleUrls: ['./search-user.component.css']
 })
-export class NavSearchUserComponent implements OnInit{
+export class SearchUserComponent {
+
 
   public usersBuscados: UserProfile[] = [];
 
@@ -18,9 +20,10 @@ export class NavSearchUserComponent implements OnInit{
 
   public siguiendo:boolean = false;
 
-constructor(private profileService: ProfileService,
+  constructor(private profileService: ProfileService,
               private followersService: FollowersService,
-              private dashboardComponent: DashboardComponent){}
+              private dashboardComponent: DashboardComponent,
+              private router: Router){}
 
   get numeroSeguidos(){
     return this.followersService.numeroSeguidos;
@@ -103,5 +106,13 @@ constructor(private profileService: ProfileService,
         this.ngOnInit();
       });
   }
+
+  verSiguiendo(){
+    this.router.navigateByUrl('/profile/search/siguiendo')
+  }
+  verSeguidores(){
+    this.router.navigateByUrl('/profile/search/seguidores')
+  }
+
 
 }
