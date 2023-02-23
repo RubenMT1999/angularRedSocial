@@ -4,6 +4,7 @@ export interface PostsUsers {
     message?: string;
     image?: string;
     like?: number;
+    dislike?: number;
     publication?: PublicationDate;
 }
 

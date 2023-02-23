@@ -53,6 +53,22 @@ export class PostService {
       )
   }
 
+  crearDisLike(id_post?: number){
+    const url = `${this.baseUrl}/post/addDislike`;
+    const body = {id_post};
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '');
+
+    return this.http.post<PostLike>(url,body,{headers})
+      .pipe(
+        map(resp => {
+          console.log(resp);
+          return resp.resultado != null;
+        }),
+        catchError(err => of(false))
+      )
+  }
+
 
   obtenerPosts(email?: string){
     const url = `${this.baseUrl}/post/user/list`;
