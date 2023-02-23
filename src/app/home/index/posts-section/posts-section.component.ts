@@ -10,6 +10,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class PostsSectionComponent {
 
+  public like:boolean = false;
+  public comentario: boolean = false;
+
   miFormulario: FormGroup = this.fb.group({
     message: ['', [Validators.required, Validators.maxLength(50)]],
     image: ['prueba', [Validators.required, Validators.maxLength(50)]],
