@@ -13,6 +13,10 @@ export interface ProfileStatus {
     status?: string;
 }
 
+export interface PostLike{
+   resultado?: string;
+}
+
 //quicktype
 export interface ObtenerProfile {
     userProfile: UserObtener[];

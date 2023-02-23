@@ -51,6 +51,35 @@ export class PostsSectionComponent {
 
       })
   }
+  postLike(id: number) {
+    this.postService.crearLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else{
+        }
+      })
+  }
+
+  postDisLike(id: number){
+    this.postService.crearDisLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else {
+        }
+      })
+  }
+
+  comentariosDisponible(){
+    if (this.comentario==false){
+      this.comentario = true;
+    }else{
+      this.comentario = false;
+    }
+  }
+
+
   userPost(){
     const { message, image, publication_date } = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
@@ -81,6 +110,7 @@ export class PostsSectionComponent {
           this.ngOnInit();
         }else{
         }
+
       })
   }
 

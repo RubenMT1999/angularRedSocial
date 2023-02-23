@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {PostFollower, PostLike} from './../interfaces/interfacePost';
+import { PostFollower } from './../interfaces/interfacePost';
 import { environment } from '../../../environments/environment.prod';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { ProfileStatus } from '../interfaces/interfaceProfile';
@@ -39,6 +39,22 @@ export class PostService {
 
   crearLike(id_post?: number){
     const url = `${this.baseUrl}/post/addlike`;
+    const body = {id_post};
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '');
+
+    return this.http.post<PostLike>(url,body,{headers})
+      .pipe(
+        map(resp => {
+          console.log(resp);
+          return resp.resultado != null;
+        }),
+        catchError(err => of(false))
+      )
+  }
+
+  crearDisLike(id_post?: number){
+    const url = `${this.baseUrl}/post/addDislike`;
     const body = {id_post};
     const headers = new HttpHeaders()
       .set('Authorization', localStorage.getItem('token') || '');
