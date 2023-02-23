@@ -49,6 +49,17 @@ export class PostsSectionComponent {
       })
   }
 
+  postDisLike(id: number){
+    const usermail = this.authService.usuario.username!;
+    this.postService.crearDisLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else {
+        }
+      })
+  }
+
 
   userPost(){
     const { message, image, publication_date} = this.miFormulario.value;

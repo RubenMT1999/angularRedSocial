@@ -14,6 +14,7 @@ export interface PostFollower {
     message?: string;
     image?: string;
     like?: number;
+    dislike?: number;
     publication?: PublicationDate;
   }
 

@@ -17,6 +17,10 @@ export interface PostLike{
    resultado?: string;
 }
 
+export interface PostDisLike{
+  resultado?: string;
+}
+
 //quicktype
 export interface ObtenerProfile {
     userProfile: UserObtener[];
