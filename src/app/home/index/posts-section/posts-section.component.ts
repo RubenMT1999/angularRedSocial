@@ -52,6 +52,14 @@ export class PostsSectionComponent {
       })
   }
 
+  comentariosDisponible(){
+    if (this.comentario==false){
+      this.comentario = true;
+    }else{
+      this.comentario = false;
+    }
+  }
+
 
   userPost(){
     const { message, image, publication_date} = this.miFormulario.value;
