@@ -12,9 +12,7 @@ const routes: Routes = [
     path:'',
     component: DashboardComponent,
     children: [
-      {path:'user', component: UserProfileComponent, children: [
         {path:'search', component: SearchUserComponent},
-      ]},
       {path: '**', redirectTo:''}
     ]
   }

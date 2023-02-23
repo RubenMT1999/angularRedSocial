@@ -10,6 +10,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class PostsSectionComponent {
 
+  public comentario: boolean = false;
+  public like:boolean = false;
+
   miFormulario: FormGroup = this.fb.group({
     message: ['', [Validators.required, Validators.maxLength(50)]],
     image: ['prueba', [Validators.required, Validators.maxLength(50)]],
@@ -29,6 +32,16 @@ export class PostsSectionComponent {
               private authService: AuthService,
               private postService: PostService) {
   }
+
+
+  comentariosDisponible(){
+    if (this.comentario==false){
+      this.comentario = true;
+    }else{
+      this.comentario = false;
+    }
+  }
+
 
   listarPost(){
     const usermail = this.authService.usuario.username!;
@@ -57,6 +70,17 @@ export class PostsSectionComponent {
 
         }
 
+      })
+  }
+
+  postLike(id: number) {
+    const usermail = this.authService.usuario.username!;
+    this.postService.crearLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else{
+        }
       })
   }
 

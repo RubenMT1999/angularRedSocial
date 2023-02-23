@@ -30,12 +30,7 @@ constructor(private profileService: ProfileService,
     return this.followersService.listaSeguidores;
   }
 
-  get obtenerBuscados(){
-    //para obtener los datos del usuario buscado. Debo obtenerlo del localStorage porque sino
-    //al recargar la página pierdo los datos.
-    this.usersBuscados = JSON.parse(localStorage.getItem('PerfilesBuscados')!)
-    return this.usersBuscados;
-  }
+
 
   get obtenerProfile(){
     return this.profileService.profile;
@@ -49,7 +44,7 @@ constructor(private profileService: ProfileService,
     return this.followersService.listarQuienMeSigue;
   }
 
-  
+
 
   ngOnInit(): void {
     this.followersService.obtenerNumeroSeguidores(this.obtenerBuscados[0].username);
@@ -58,10 +53,16 @@ constructor(private profileService: ProfileService,
     this.followersService.verMisSeguidores(this.obtenerBuscados[0].username);
     this.followersService.obtenerUsernameSeguidores(this.obtenerBuscados[0].username);
   }
+  get obtenerBuscados(){
+    //para obtener los datos del usuario buscado. Debo obtenerlo del localStorage porque sino
+    //al recargar la página pierdo los datos.
+    this.usersBuscados = JSON.parse(localStorage.getItem('PerfilesBuscados')!)
+    return this.usersBuscados;
+  }
 
-             
+
   seguirUsuario(twitterUsername:string){
-    
+
     this.followersService.seguirUsuario(twitterUsername)
       .subscribe(resp => {
         if(resp){
@@ -97,7 +98,7 @@ constructor(private profileService: ProfileService,
     this.followersService.dejarDeSeguir(twitter_username)
       .subscribe(resp => {
         if(resp){
-          
+
         }
         this.ngOnInit();
       });
