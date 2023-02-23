@@ -26,7 +26,9 @@
                   (click)="dejarSeguir(obtenerBuscados[0].username!)">
                     Dejar de Seguir</button>
                 </ng-template>
-                <button type="button" class="btn btn-outline-primary ms-1">Mensaje</button>
+                <button type="button" class="btn btn-outline-primary ms-1"
+                  [routerLink]="['/profile/chat']">
+                  Mensaje</button>
               </div>
             </div>
           </div>
@@ -193,3 +195,4 @@
 
     </div>
   </section>
+
