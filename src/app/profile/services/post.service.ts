@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {PostLike, ProfileStatus} from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';
 import { PostsUsers, ArrayPostUsers, PostStatus, ArrayPostFollowers } from '../interfaces/interfacePost';
+import {CommentsInterface} from "../interfaces/interfaceComments";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,20 @@ export class PostService {
     const body = {id_user_id, message, image, publication_date};
 
     return this.http.post<ProfileStatus>(url, body)
+      .pipe(
+        map(resp => {
+          console.log(resp);
+          return resp.status != null;
+        }),
+        catchError(err => of(false))
+      )
+  }
+
+  crearComments(message?:string, id_post?:number, username?:string,  date_comments?:Date){
+    const url = `${this.baseUrl}/comments/create`;
+    const body = {message, id_post, username, date_comments};
+
+    return this.http.post<CommentsInterface>(url, body)
       .pipe(
         map(resp => {
           console.log(resp);

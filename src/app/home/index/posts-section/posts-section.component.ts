@@ -12,6 +12,7 @@ export class PostsSectionComponent {
 
   public like:boolean = false;
   public comentario: boolean = false;
+  public numero: number = 0;
 
   miFormulario: FormGroup = this.fb.group({
     message: ['', [Validators.required, Validators.maxLength(50)]],
@@ -19,7 +20,13 @@ export class PostsSectionComponent {
     publication_date: new Date()
   });
 
+  miComentario: FormGroup = this.fb.group({
+    message: ['', [Validators.required, Validators.maxLength(50)]],
+    date_comments: new Date(),
+  });
+
   public someValue:string= '';
+  public someComentario:string= '';
   ngOnInit() {
     this.listarPost();
   }
@@ -61,14 +68,31 @@ export class PostsSectionComponent {
       })
   }
 
-  comentariosDisponible(){
-    if (this.comentario==false){
+  comentariosDisponible(id: number){
+    this.numero = id;
+    if(this.comentario==false){
       this.comentario = true;
     }else{
       this.comentario = false;
     }
   }
 
+  userComments(id: number){
+    const {message, date_comments} = this.miComentario.value;
+    const username = this.authService.usuario.username!;
+    console.log(this.miComentario.value);
+    this.postService.crearComments(message, id, username, date_comments)
+      .subscribe(resp => {
+        if(resp){
+          console.log(this.miComentario.value);
+          this.someComentario= '';
+          this.ngOnInit();
+        }else{
+
+        }
+
+      })
+  }
 
   userPost(){
     const { message, image, publication_date} = this.miFormulario.value;
