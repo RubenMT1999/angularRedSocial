@@ -5,5 +5,17 @@ export interface ChatStatus {
 
 
 export interface ListadoMensajes {
-    listaMensajes?: string[];
+    listaMensajes?: ListaPersonalizada[];
+}
+
+
+export interface ListaPersonalizada {
+    texto?: string;
+    creation_date ?: DateOfCreation;
+}
+
+export interface DateOfCreation {
+    date?:          Date;
+    timezone_type?: number;
+    timezone?:      string;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.prod';
-import { ChatStatus, ListadoMensajes } from '../interfaces/interfaceChat';
+import { ChatStatus, ListadoMensajes, ListaPersonalizada } from '../interfaces/interfaceChat';
 import { map, catchError, of } from 'rxjs';
 
 @Injectable({
@@ -11,10 +11,16 @@ export class ChatService {
 
   private baseUrl: string = environment.baseUrl;
 
-  private mensajes: string[] = [];
+  private mensajes: any;
+
+  private mensajesMios: any;
 
   get listaMensajes(){
     return this.mensajes;
+  }
+
+  get listaMensajesMios(){
+    return this.mensajesMios;
   }
 
   constructor(private http: HttpClient) { }
@@ -36,7 +42,7 @@ export class ChatService {
 
 
   listarMensajes(usernameReceptor?: string){
-    const url = `${this.baseUrl}/message/create`;
+    const url = `${this.baseUrl}/message/listarMessages`;
     const body = {usernameReceptor};
     const headers = new HttpHeaders()
     .set('Authorization', localStorage.getItem('token') || '');
@@ -44,7 +50,26 @@ export class ChatService {
     return this.http.post<ListadoMensajes>(url,body, {headers})
     .pipe(
       map(resp => {
-        this.mensajes = resp.listaMensajes!;
+        this.mensajes = resp.listaMensajes;
+
+        return resp.listaMensajes?.length != 0
+      }),
+      catchError(err => of(false))
+    );
+
+  }
+
+
+  listarMensajesMios(usernameReceptor?: string){
+    const url = `${this.baseUrl}/message/listarMessagesMios`;
+    const body = {usernameReceptor};
+    const headers = new HttpHeaders()
+    .set('Authorization', localStorage.getItem('token') || '');
+
+    return this.http.post<ListadoMensajes>(url,body, {headers})
+    .pipe(
+      map(resp => {
+        this.mensajesMios = resp.listaMensajes;
 
         return resp.listaMensajes?.length != 0
       }),
