@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { PostFollower } from './../interfaces/interfacePost';
+import {PostFollower} from './../interfaces/interfacePost';
 import { environment } from '../../../environments/environment.prod';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {PostDisLike, PostLike, ProfileStatus} from '../interfaces/interfaceProfile';
+import {PostDisLike, PostLike} from '../interfaces/interfaceProfile';
+import { ProfileStatus } from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';
 import { PostsUsers, ArrayPostUsers, PostStatus, ArrayPostFollowers } from '../interfaces/interfacePost';
 
@@ -53,6 +54,8 @@ export class PostService {
       )
   }
 
+
+
   crearDisLike(id_post?: number){
     const url = `${this.baseUrl}/post/addDislike`;
     const body = {id_post};
@@ -101,8 +104,6 @@ export class PostService {
         catchError(err => of(false))
       );
   }
-
-
 
 
 

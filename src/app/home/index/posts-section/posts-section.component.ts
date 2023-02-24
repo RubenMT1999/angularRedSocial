@@ -10,8 +10,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class PostsSectionComponent {
 
-  public like:boolean = false;
   public comentario: boolean = false;
+  public like:boolean = false;
 
   miFormulario: FormGroup = this.fb.group({
     message: ['', [Validators.required, Validators.maxLength(50)]],
@@ -33,6 +33,7 @@ export class PostsSectionComponent {
               private postService: PostService) {
   }
 
+
   listarPost(){
     const usermail = this.authService.usuario.username!;
 
@@ -42,12 +43,21 @@ export class PostsSectionComponent {
       })
   }
   postLike(id: number) {
-    const usermail = this.authService.usuario.username!;
     this.postService.crearLike(id)
       .subscribe(resp => {
         if(resp){
           this.ngOnInit();
         }else{
+        }
+      })
+  }
+
+  postDisLike(id: number){
+    this.postService.crearDisLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else {
         }
       })
   }
@@ -93,6 +103,7 @@ export class PostsSectionComponent {
 
       })
   }
+
 
 
 

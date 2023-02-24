@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit{
 
     if (localStorage['theme'] === '' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: )').matches)) {
       document.documentElement.classList.add('')
-    }   
+    }
     // Whenever the user explicitly chooses light mode
     localStorage['theme'] = 'light'
 
@@ -98,8 +98,13 @@ export class DashboardComponent implements OnInit{
         if(this.termino == this.profile.username){
           this.router.navigateByUrl('profile/user')
         }
-        else if(resp){
-          this.router.navigateByUrl('profile/search')
+
+        else if(resp) {
+          console.log(resp)
+          const currentUrl = 'profile/search';
+          this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+          });
         }
         else{
           const links = document.querySelectorAll('.form-control');

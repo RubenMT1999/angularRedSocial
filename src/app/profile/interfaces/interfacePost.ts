@@ -19,6 +19,10 @@ export interface PostFollower {
     publication?: PublicationDate;
   }
 
+export interface PostLike{
+  resultado?: string;
+}
+
 
 export interface PublicationDate {
     date?:          Date;

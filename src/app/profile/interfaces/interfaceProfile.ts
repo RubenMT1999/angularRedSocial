@@ -15,9 +15,6 @@ export interface ProfileStatus {
     status?: string;
 }
 
-export interface PostLike{
-   resultado?: string;
-}
 
 export interface PostDisLike{
   resultado?: string;
