@@ -30,13 +30,18 @@
 
     <div class="flex flex-row mt-4 gap-4">
         <p>nº seguiendo</p>
+        {{obtenerSeguidores!.userSeguidores[0]}}
+
         <p>nº seguidores</p>
+      {{obtenerSeguidores!.userSeguidores[1]}}
+
+
     </div>
-    
+
     <hr class="mt-4 mb-4 dark:opacity-40">
 
     <button (click)="onEditProfile()" class="flex flex-row items-center p-2 mt-2 min-w-full rounded-lg hover:bg-[#F0F0F0] dark:hover:bg-[#212F3C]">
-        <p>Editar Perfil</p> 
+        <p>Editar Perfil</p>
         <svg class="w-4 dark:fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="secondary" d="M19,16H4a1,1,0,0,1,0-2H19a1,1,0,0,1,0,2Zm1-6H5A1,1,0,0,1,5,8H20a1,1,0,0,1,0,2Z"></path><path id="primary" d="M12.69,22a1.07,1.07,0,0,1-.25,0,1,1,0,0,1-.71-1.23l4.82-18a1,1,0,1,1,1.93.52l-4.82,18A1,1,0,0,1,12.69,22ZM6.48,22l-.26,0a1,1,0,0,1-.7-1.23l4.82-18a1,1,0,1,1,1.93.52l-4.82,18A1,1,0,0,1,6.48,22Z"></path></g></svg>
     </button>
 

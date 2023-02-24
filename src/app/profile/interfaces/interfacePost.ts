@@ -38,3 +38,4 @@ export interface ArrayPostFollowers{
 export interface PostStatus {
     status?: string;
 }
+

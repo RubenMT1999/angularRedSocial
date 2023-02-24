@@ -82,7 +82,6 @@ export class PostsProfileComponent {
       })
 
   }
-
   postLike(id: number) {
     const usermail = this.authService.usuario.username!;
     this.postService.crearLike(id)
