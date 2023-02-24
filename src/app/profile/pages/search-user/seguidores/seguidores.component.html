@@ -7,8 +7,10 @@
 
     <hr class="mt-3 mb-3 dark:opacity-40">
 
-    <div *ngFor="let seguidor of nombreSeguidores">
-        {{ seguidor }}
+    <div *ngFor="let seguidor of perfilDeQuienMeSigue">
+       <button (click)="perfilSeguidores(seguidor)">
+            {{ seguidor }}
+       </button> 
     </div>
 
 

@@ -73,12 +73,7 @@ export class SearchUserComponent {
   }
 
 
-  perfilSeguidores(twitterUsername:string){
 
-    this.dashboardComponent.termino = twitterUsername;
-    this.dashboardComponent.buscar();
-    this.ngOnInit();
-  }
 
 
   loSigues(usernameEmisor:string, usernameReceptor:string){
