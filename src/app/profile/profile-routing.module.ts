@@ -23,7 +23,7 @@ const routes: Routes = [
           { path: 'seguidores', component: SeguidoresComponent }
         ] },
       {path:'user', component: UserProfileComponent, children: [
-        { path: '', component: PostsProfileComponent},
+        { path: '', component: PostsProfileComponent},       
         { path: 'settings', component: ProfileSettingsComponent},
       ]},
       {path: '**', redirectTo:''}
