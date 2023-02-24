@@ -101,25 +101,7 @@ export class ProfileService {
           )
   }
 
-  // getUser():Observable<userSeguidores>{
-  //   const url = `${this.baseUrl}/profile/follow`;
-  //   const headers = new HttpHeaders().set('Authorization', localStorage.getItem('token') || '');
-  //
-  //
-  //
-  //   return this.http.post<userSeguidores>(url,{},{headers})
-  //     .pipe(
-  //       map(resp => {
-  //
-  //         this.usersSeguidores = resp;
-  //
-  //         }
-  //
-  //         console.log(this.usersSeguidores);
-  //         return true;
-  //       }),
-  //         catchError(err => of(true))
-  //     )
+
 
 
   getUser(){
