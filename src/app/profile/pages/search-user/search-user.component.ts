@@ -29,9 +29,7 @@ export class SearchUserComponent {
     return this.followersService.numeroSeguidos;
   }
 
-  get nombreSeguidores(){
-    return this.followersService.listaSeguidores;
-  }
+
 
 
 
@@ -43,9 +41,7 @@ export class SearchUserComponent {
     return this.followersService.verNumeroSeguidores;
   }
 
-  get perfilDeQuienMeSigue(){
-    return this.followersService.listarQuienMeSigue;
-  }
+ 
 
 
 
@@ -77,12 +73,7 @@ export class SearchUserComponent {
   }
 
 
-  perfilSeguidores(twitterUsername:string){
 
-    this.dashboardComponent.termino = twitterUsername;
-    this.dashboardComponent.buscar();
-    this.ngOnInit();
-  }
 
 
   loSigues(usernameEmisor:string, usernameReceptor:string){
