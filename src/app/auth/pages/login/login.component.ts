@@ -1,16 +1,18 @@
 import { tap } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
+
+declare const google: any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit{
 
   
 
@@ -23,6 +25,29 @@ export class LoginComponent {
   constructor(private fb: FormBuilder,
               private router: Router,
               private authService: AuthService){}
+
+
+              
+  ngAfterViewInit(): void {
+    this.googleInit();
+  }
+
+
+  googleInit(){
+    google.accounts.id.initialize({
+      client_id: "654622771453-jf22r6uopircg7fe0221dsd6kbjn5k60.apps.googleusercontent.com",
+      callback: this.handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }  // customization attributes
+    );
+  }
+  
+
+  handleCredentialResponse(response: any){
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
 
 
 
