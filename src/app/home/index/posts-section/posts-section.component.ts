@@ -52,15 +52,7 @@ export class PostsSectionComponent {
       })
   }
 
-  postDisLike(id: number){
-    this.postService.crearDisLike(id)
-      .subscribe(resp => {
-        if(resp){
-          this.ngOnInit();
-        }else {
-        }
-      })
-  }
+
 
   postDisLike(id: number){
     const usermail = this.authService.usuario.username!;

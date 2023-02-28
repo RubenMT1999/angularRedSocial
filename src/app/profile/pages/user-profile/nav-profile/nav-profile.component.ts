@@ -14,7 +14,7 @@ import {environment} from "../../../../../environments/environment";
 })
 export class NavProfileComponent implements OnInit{
 
-private segidos?: number;
+
 
 
   ngOnInit(): void {

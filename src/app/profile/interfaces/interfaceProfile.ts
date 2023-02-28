@@ -20,6 +20,10 @@ export interface PostDisLike{
   resultado?: string;
 }
 
+export interface PostLike{
+  resultado?: string;
+}
+
 //quicktype
 export interface ObtenerProfile {
     userProfile: UserObtener[];
