@@ -2,6 +2,7 @@ import { PostService } from './../../../profile/services/post.service';
 import { AuthService } from './../../../auth/services/auth.service';
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CommentsService} from "../../../profile/services/comments.service";
 
 @Component({
   selector: 'app-posts-section',
@@ -9,8 +10,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./posts-section.component.css']
 })
 export class PostsSectionComponent {
-
   public comentario: boolean = false;
+  public numero: number = 0;
+  public listacomentario = [];
   public like:boolean = false;
 
   miFormulario: FormGroup = this.fb.group({
@@ -19,9 +21,23 @@ export class PostsSectionComponent {
     publication_date: new Date()
   });
 
+  miComentario: FormGroup = this.fb.group({
+    message: ['', [Validators.required, Validators.maxLength(50)]],
+    date_comments: new Date()
+  });
+
   public someValue:string= '';
+  public someComentario:string= '';
+
   ngOnInit() {
     this.listarPost();
+  }
+
+  get obtenerCommentsPost(){
+    return this.commentsService.commentsPosts;
+  }
+  get obtener(){
+    return this.commentsService.arrayprueba;
   }
 
   get obtenerPostFollowers(){
@@ -30,7 +46,8 @@ export class PostsSectionComponent {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private postService: PostService) {
+              private postService: PostService,
+              private commentsService: CommentsService) {
   }
 
 
@@ -39,9 +56,15 @@ export class PostsSectionComponent {
 
     this.postService.obtenerPostsFollowers(usermail)
       .subscribe(resp =>{
-
       })
   }
+
+  // listaComments(variable: number){
+  //     this.commentsService.obtenerCommentsPost(variable)
+  //       .subscribe(resp=>{
+  //       })
+  //   }
+
   postLike(id: number) {
     this.postService.crearLike(id)
       .subscribe(resp => {
@@ -65,14 +88,33 @@ export class PostsSectionComponent {
       })
   }
 
-  comentariosDisponible(){
-    if (this.comentario==false){
-      this.comentario = true;
-    }else{
-      this.comentario = false;
-    }
+  comentariosDisponible(id: number){
+    this.commentsService.obtenerCommentsPost(id)
+      .subscribe(resp=>{
+      })
+    this.someComentario = '';
+    this.numero = id;
+    this.comentario = !this.comentario;
   }
 
+
+
+  userComments(id: number){
+    const {message, date_comments} = this.miComentario.value;
+    const username = this.authService.usuario.username!;
+    console.log(this.miComentario.value);
+    this.commentsService.crearComments(message, id, username, date_comments)
+      .subscribe(resp => {
+        if(resp){
+          console.log(this.miComentario.value);
+          this.someComentario= '';
+          this.ngOnInit();
+        }else{
+
+        }
+
+      })
+  }
 
   userPost(){
     const { message, image, publication_date} = this.miFormulario.value;

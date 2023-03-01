@@ -8,6 +8,8 @@ export interface PostsUsers {
     publication?: PublicationDate;
 }
 
+
+
 export interface PostFollower {
     id?: number;
     username?: string;
