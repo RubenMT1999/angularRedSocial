@@ -8,13 +8,12 @@ export interface CommentsPost{
   text?:string;
   email?:string;
   id_post?: number;
-  date_comments?: Date;
  }
 
 export interface Arrayprueba  {
-  datos?: any;
+  datos?: any[];
 }
 
 export interface ArrayCommentsPost{
-  commentsPost?: CommentsPost[]
+  commentsPost?: CommentsPost[];
 }

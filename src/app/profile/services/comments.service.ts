@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment.prod";
-import {ArrayCommentsPost, Arrayprueba, CommentsInterface, CommentsPost} from "../interfaces/interfaceComments";
+import {ArrayCommentsPost, CommentsInterface, CommentsPost} from "../interfaces/interfaceComments";
 import {catchError, map, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ArrayPostFollowers, PostFollower} from "../interfaces/interfacePost";
@@ -9,13 +9,11 @@ import {ArrayPostFollowers, PostFollower} from "../interfaces/interfacePost";
   providedIn: 'root'
 })
 export class CommentsService {
-  public arrayprueba!: Arrayprueba[];
-
-  public commentsPosts!: CommentsPost[];
-
 
 
   private baseUrl: string = environment.baseUrl;
+
+  public commentsPosts!: CommentsPost[];
 
   constructor(private http: HttpClient) { }
 
@@ -33,37 +31,35 @@ export class CommentsService {
       )
   }
 
-  // obtenerCommentsPost(id_post?: number){
-  //   const url = `${this.baseUrl}/comments/post`;
-  //   const body = {id_post};
-  //
-  //   return this.http.post<ArrayCommentsPost>(url,body)
-  //     .pipe(
-  //       map(resp => {
-  //
-  //         this.commentsPosts = resp.commentsPost!;
-  //
-  //         return resp.commentsPost?.length != 0
-  //       }),
-  //       catchError(err => of(false))
-  //     );
-  // }
-
   obtenerCommentsPost(id_post?: number){
     const url = `${this.baseUrl}/comments/post`;
     const body = {id_post};
 
-    return this.http.post<Arrayprueba>(url,body)
+    return this.http.post<ArrayCommentsPost>(url,body)
       .pipe(
         map(resp => {
-
-          this.arrayprueba = resp.datos!;
-
-          return resp.datos?.length != 0
+          this.commentsPosts = resp.commentsPost!;
+          return resp.commentsPost?.length != 0
         }),
         catchError(err => of(false))
       );
   }
+
+  // obtenerCommentsPost(id_post?: number){
+  //   const url = `${this.baseUrl}/comments/post`;
+  //   const body = {id_post};
+  //
+  //   return this.http.post<Arrayprueba>(url,body)
+  //     .pipe(
+  //       map(resp => {
+  //
+  //         this.arrayprueba = resp.datos!;
+  //
+  //         return resp.datos?.length != 0
+  //       }),
+  //       catchError(err => of(false))
+  //     );
+  // }
 
 
 

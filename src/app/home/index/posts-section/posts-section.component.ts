@@ -52,6 +52,7 @@ export class PostsSectionComponent {
 
     this.postService.obtenerPostsFollowers(usermail)
       .subscribe(resp =>{
+        console.log(this.obtenerCommentsPost);
       })
   }
 
