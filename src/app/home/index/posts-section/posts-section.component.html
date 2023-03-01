@@ -63,9 +63,8 @@
 
 
   <div *ngIf="!comentario && numero == post.id;">
-    <div class="flex flex-col mt-6 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]" *ngFor="let variable of obtener">
+    <div class="flex flex-col mt-6 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]" *ngFor="let variable of obtenerCommentsPost">
       <p>{{variable.text}}</p>
-<!--      <pre>{{obtener | json}}</pre>-->
     </div>
 
     <div class="flex flex-col mt-12 w-[800px] p-4 bg-white rounded-lg dark:bg-[#191919]">
