@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { Subject, debounceTime, catchError } from 'rxjs';
 import { ProfileService } from 'src/app/profile/services/profile.service';
 import { UserProfile, ObtenerProfile } from '../../profile/interfaces/interfaceProfile';
+ // import theme = require("tailwindcss/defaultTheme");
 
 @Component({
   selector: 'app-dashboard',
@@ -56,21 +57,20 @@ export class DashboardComponent implements OnInit{
 
   onDarkMode(){
 
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (localStorage['theme'] === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
     } else {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.remove('dark')
     }
 
-    if (localStorage['theme'] === '' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: )').matches)) {
-      document.documentElement.classList.add('')
-    }
-    // Whenever the user explicitly chooses light mode
+// Whenever the user explicitly chooses light mode
     localStorage['theme'] = 'light'
 
-    // Whenever the user explicitly chooses dark mode
+// Whenever the user explicitly chooses dark mode
     localStorage['theme'] = 'dark'
+
+// Whenever the user explicitly chooses to respect the OS preference
+    localStorage.removeItem('theme')
 
   }
 
