@@ -36,9 +36,9 @@ export class PostsSectionComponent {
   get obtenerCommentsPost(){
     return this.commentsService.commentsPosts;
   }
-  // get obtener(){
-  //   return this.commentsService.arrayprueba;
-  // }
+  get obtener(){
+    return this.commentsService.arrayprueba;
+  }
 
   get obtenerPostFollowers(){
     return this.postService.usuarioPostsFollower;
@@ -58,14 +58,12 @@ export class PostsSectionComponent {
       })
   }
 
-  // listaComments(){
-  //   for(let variable of this.obtenerPostFollowers){
-  //
-  //     this.commentsService.obtenerCommentsPost(variable.id)
+  // listaComments(variable: number){
+  //     this.commentsService.obtenerCommentsPost(variable)
   //       .subscribe(resp=>{
   //       })
   //   }
-  // }
+
   postLike(id: number) {
     this.postService.crearLike(id)
       .subscribe(resp => {
