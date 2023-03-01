@@ -12,7 +12,7 @@ export interface CommentsPost{
  }
 
 export interface Arrayprueba  {
-  datos?: CommentsPost[]
+  datos?: any;
 }
 
 export interface ArrayCommentsPost{

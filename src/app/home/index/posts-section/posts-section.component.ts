@@ -36,9 +36,6 @@ export class PostsSectionComponent {
   get obtenerCommentsPost(){
     return this.commentsService.commentsPosts;
   }
-  get obtener(){
-    return this.commentsService.arrayprueba;
-  }
 
   get obtenerPostFollowers(){
     return this.postService.usuarioPostsFollower;
