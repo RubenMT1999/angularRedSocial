@@ -73,15 +73,13 @@ export class LoginComponent implements AfterViewInit{
 
   loginGoogle(){
 
+    const password = '@@@'
+
     this.authService.googleSignIn(this.googleCredentials)
       .subscribe(resp => {
         this.usuarioGoogle = resp.email!;
         /* this.passwordGoogle = resp.password!; */
         console.log(this.usuarioGoogle);
-      });
-
-
-      const password = '@@@'
 
 
         this.authService.login(this.usuarioGoogle, password)
@@ -94,6 +92,9 @@ export class LoginComponent implements AfterViewInit{
               Swal.fire('Error','Compruebe los datos introducidos e inténtelo de nuevo','error');
           }
         });
+      });
+
+        
   }
 
   
