@@ -83,7 +83,6 @@ export class LoginComponent implements AfterViewInit{
 
 
         this.authService.login(this.usuarioGoogle, password)
-        .pipe(delay(4000))
         .subscribe(resp => {
           if(resp){
             this.router.navigateByUrl('dashboard');

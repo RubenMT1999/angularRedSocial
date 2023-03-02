@@ -4,6 +4,7 @@ import { SearchUserComponent } from '../search-user/search-user.component';
 import { UserProfile } from '../../interfaces/interfaceProfile';
 import * as moment from 'moment';
 import { ListaPersonalizada } from '../../interfaces/interfaceChat';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-chat-user',
@@ -31,8 +32,12 @@ export class ChatUserComponent implements OnInit{
     return this.chatService.listaMensajesMios;
   }
 
+  get obtenerProfile(){
+    return this.profileService.profile;
+  }
 
-  constructor(private chatService: ChatService){}
+  constructor(private chatService: ChatService,
+              private profileService: ProfileService){}
 
   ngOnInit(): void {
     this.listarMensajes(this.obtenerBuscados[0].username);
@@ -40,7 +45,7 @@ export class ChatUserComponent implements OnInit{
   }
 
 
-  crearMensaje(texto?:string, creation_date?:Date, usernameReceptor?:string){
+  crearMensaje(){
     const currentDate = new Date();
     var newDateObj = moment(currentDate).add(1, 'h').toDate();
 
@@ -63,24 +68,26 @@ export class ChatUserComponent implements OnInit{
   listarMensajesMios(usernameReceptor?:string){
     this.chatService.listarMensajesMios(usernameReceptor)
       .subscribe(resp => {
-
-        this.elMensajeEsMio(1);
       });
   }
 
-  elMensajeEsMio(o: number){
+  elMensajeEsMio(texto: string){
 /*       const found: boolean = this.todosLosMensajes.listaPersonalizada.includes(this.todosLosMensajesMios.listaPersonalizada[0]);
       return found; */
 
-  
+    for(let i = 0; i<this.todosLosMensajesMios.length; i++){
+      let variable = '';
+      variable = this.todosLosMensajesMios[i]['texto']
 
-        console.log(this.todosLosMensajesMios[o]['texto'])
+      console.log(variable)
 
-    
-
+      if(variable === texto){
+        console.log('es mio')
+        return true;
+      }
+    }
+    return false
   }
-
-
 
 
 }

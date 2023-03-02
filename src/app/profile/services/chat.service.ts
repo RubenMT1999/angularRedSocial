@@ -56,7 +56,6 @@ export class ChatService {
       }),
       catchError(err => of(false))
     );
-
   }
 
 
@@ -75,9 +74,6 @@ export class ChatService {
       }),
       catchError(err => of(false))
     );
-
   }
-
-
 
 }
