@@ -105,5 +105,9 @@ export class SearchUserComponent {
     this.router.navigateByUrl('/profile/search/seguidores')
   }
 
+  intoChat(){
+    this.router.navigateByUrl('/profile/search/chat')
+  }
+
 
 }

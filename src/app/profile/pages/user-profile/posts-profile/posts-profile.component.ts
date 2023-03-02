@@ -37,7 +37,6 @@ export class PostsProfileComponent {
 
     this.postService.obtenerPosts(usermail)
       .subscribe(resp =>{
-
       })
   }
   get obtenerProfile(){

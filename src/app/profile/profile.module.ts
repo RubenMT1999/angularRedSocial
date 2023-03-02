@@ -12,6 +12,7 @@ import { SearchUserComponent } from './pages/search-user/search-user.component';
 import { SiguiendoComponent } from './pages/search-user/siguiendo/siguiendo.component';
 import { SeguidoresComponent } from './pages/search-user/seguidores/seguidores.component';
 import { PostsSearchComponent } from './pages/search-user/posts-search/posts-search.component';
+import { ChatUserComponent } from './pages/search-user/chat-user/chat-user.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { PostsSearchComponent } from './pages/search-user/posts-search/posts-sea
     SearchUserComponent,
     SiguiendoComponent,
     SeguidoresComponent,
-    PostsSearchComponent
+    PostsSearchComponent,
+    ChatUserComponent
   ],
   imports: [
     CommonModule,

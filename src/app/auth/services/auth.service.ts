@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-import { AuthResponse, RegistroStatus, RenovarToken, Usuario } from './../interfaces/interfaces';
+import { AuthResponse, RegistroStatus, RenovarToken, RespuestaLoginGoogle, Usuario } from './../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -74,6 +74,14 @@ export class AuthService {
         }),
         catchError(err => of(false))
       )
+  }
+
+  googleSignIn(token: string){
+    const url = `${this.baseUrl}/login/google`;
+    const body = {token};
+
+    return this.http.post<RespuestaLoginGoogle>(url,body)
+    
   }
 
 
