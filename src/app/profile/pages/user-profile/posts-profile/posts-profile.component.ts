@@ -19,16 +19,28 @@ export class PostsProfileComponent {
   public someValue:string= '';
   ngOnInit() {
     this.listarPost();
+    this.listarPostRelio();
   }
 
   get obtenerPost(){
     return this.postService.usuarioPosts;
+  }
+  get obtenerRelioPost(){
+    return this.profileService.postRelios;
   }
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private postService: PostService,
               private profileService: ProfileService) {
+  }
+
+  listarPostRelio(){
+
+    this.profileService.obtenerRelio()
+      .subscribe(resp =>{
+        console.log(this.obtenerRelioPost);
+      })
   }
 
 
@@ -54,7 +66,7 @@ export class PostsProfileComponent {
   // }
 
   userPost(){
-    const { message, image, publication_date } = this.miFormulario.value;
+    const { message, image,  publication_date } = this.miFormulario.value;
     const usermail = this.authService.usuario.username!;
 
     console.log(this.miFormulario.value);
@@ -80,6 +92,27 @@ export class PostsProfileComponent {
         this.ngOnInit();
       })
 
+  }
+  postLike(id: number) {
+    const usermail = this.authService.usuario.username!;
+    this.postService.crearLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else{
+        }
+      })
+  }
+
+  postDisLike(id: number){
+    const usermail = this.authService.usuario.username!;
+    this.postService.crearDisLike(id)
+      .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else {
+        }
+      })
   }
 
 

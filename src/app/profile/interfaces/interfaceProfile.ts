@@ -9,15 +9,42 @@ export interface UserProfile {
     fecha?: Date;
 }
 
+
+
 export interface ProfileStatus {
     status?: string;
 }
 
 
+export interface PostDisLike{
+  resultado?: string;
+}
+
+
+export interface PostLike{
+  resultado?: string;
+}
+
+export interface PostRelioMostrar{
+  id_user?: string;
+  mensaje?: string;
+  imagen?: string;
+  fecha_publicacion?: DateOfBirth
+}
+
+export interface Publicacion{
+  publicacion?: PostRelioMostrar[];
+}
+
+export interface PostRelio{
+  resultado?: string;
+}
+
 //quicktype
 export interface ObtenerProfile {
     userProfile: UserObtener[];
 }
+
 
 export interface UserObtener {
     name?:          string;
@@ -30,8 +57,15 @@ export interface UserObtener {
     date_of_birth?: DateOfBirth;
 }
 
+
+export type userSeguidores ={
+   userSeguidores: number[];
+}
+
 export interface DateOfBirth {
     date?:          Date;
     timezone_type?: number;
     timezone?:      string;
 }
+
+

@@ -5,8 +5,11 @@ export interface PostsUsers {
     image?: string;
     like?: number;
     dislike?: number;
+    relio?: number;
     publication?: PublicationDate;
 }
+
+
 
 export interface PostFollower {
     id?: number;
@@ -15,6 +18,8 @@ export interface PostFollower {
     message?: string;
     image?: string;
     like?: number;
+    dislike?: number;
+    relio?: number;
     publication?: PublicationDate;
   }
 
@@ -41,3 +46,4 @@ export interface ArrayPostFollowers{
 export interface PostStatus {
     status?: string;
 }
+
