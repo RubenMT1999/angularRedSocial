@@ -5,7 +5,7 @@ import {
   ProfileStatus,
   ObtenerProfile,
   DateOfBirth,
-  userSeguidores,
+  userSeguidores, PostRelioMostrar, Publicacion,
 } from './../interfaces/interfaceProfile';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';

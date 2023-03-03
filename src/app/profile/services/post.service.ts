@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {PostFollower} from './../interfaces/interfacePost';
 import { environment } from '../../../environments/environment.prod';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {PostLike, PostRelio, ProfileStatus} from '../interfaces/interfaceProfile';
+import {PostRelio} from '../interfaces/interfaceProfile';
 import {PostDisLike, PostLike} from '../interfaces/interfaceProfile';
 import { ProfileStatus } from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';

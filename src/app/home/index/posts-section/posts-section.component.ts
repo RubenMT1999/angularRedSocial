@@ -10,7 +10,7 @@ import {ProfileService} from "../../../profile/services/profile.service";
   templateUrl: './posts-section.component.html',
   styleUrls: ['./posts-section.component.css']
 })
-export class PostsSectionComponent OnInit{
+export class PostsSectionComponent implements OnInit{
   public like:boolean = false;
   public comentario: boolean = false;
   public numero: number = 0;
