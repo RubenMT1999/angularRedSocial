@@ -20,6 +20,7 @@ export interface PostDisLike{
   resultado?: string;
 }
 
+
 export interface PostLike{
   resultado?: string;
 }

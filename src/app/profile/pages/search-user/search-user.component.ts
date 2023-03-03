@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserProfile} from "../../interfaces/interfaceProfile";
 import {ProfileService} from "../../services/profile.service";
 
@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   templateUrl: './search-user.component.html',
   styleUrls: ['./search-user.component.css']
 })
-export class SearchUserComponent {
+export class SearchUserComponent implements OnInit{
 
 
   public usersBuscados: UserProfile[] = [];
@@ -41,7 +41,7 @@ export class SearchUserComponent {
     return this.followersService.verNumeroSeguidores;
   }
 
- 
+
 
 
 

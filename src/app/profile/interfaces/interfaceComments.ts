@@ -12,9 +12,26 @@ export interface CommentsPost{
  }
 
 export interface Arrayprueba  {
-  datos?: any;
+  text?: string;
+  email?: string;
+}
+
+export interface Arraylista{
+  arrayPrueba?: Arrayprueba[]
 }
 
 export interface ArrayCommentsPost{
   commentsPost?: CommentsPost[]
+}
+
+export interface commentsUser{
+  commentsUser?: NuevaInterfaz[];
+}
+
+
+export interface NuevaInterfaz{
+  text?: string;
+  date_comments?: Date;
+  email?: string;
+  id_post?: number;
 }

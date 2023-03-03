@@ -1,15 +1,16 @@
 import { PostService } from './../../../profile/services/post.service';
 import { AuthService } from './../../../auth/services/auth.service';
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommentsService} from "../../../profile/services/comments.service";
+import {NuevaInterfaz} from "../../../profile/interfaces/interfaceComments";
 
 @Component({
   selector: 'app-posts-section',
   templateUrl: './posts-section.component.html',
   styleUrls: ['./posts-section.component.css']
 })
-export class PostsSectionComponent {
+export class PostsSectionComponent implements OnInit{
   public comentario: boolean = false;
   public numero: number = 0;
   public listacomentario = [];
@@ -29,8 +30,20 @@ export class PostsSectionComponent {
   public someValue:string= '';
   public someComentario:string= '';
 
-  ngOnInit() {
+  coments: NuevaInterfaz[] = [];
+
+
+
+
+  ngOnInit(): void {
     this.listarPost();
+
+    this.obtenerCommentsPosts();
+
+
+  }
+  get obtener(){
+    return this.commentsService.arrayprueba;
   }
 
   get obtenerCommentsPost(){
@@ -39,6 +52,10 @@ export class PostsSectionComponent {
 
   get obtenerPostFollowers(){
     return this.postService.usuarioPostsFollower;
+  }
+
+  get obtenerCommentsPostS(){
+    return this.commentsService.posts;
   }
 
   constructor(private fb: FormBuilder,
@@ -133,6 +150,17 @@ export class PostsSectionComponent {
         }
 
       })
+  }
+
+  obtenerCommentsPosts(){
+
+    this.commentsService.obtenerCommentsPost().subscribe(resp => {
+
+
+
+
+    });
+
   }
 
 

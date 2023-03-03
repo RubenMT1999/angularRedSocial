@@ -5,6 +5,7 @@ export interface PostsUsers {
     image?: string;
     like?: number;
     dislike?: number;
+    relio?: number;
     publication?: PublicationDate;
 }
 
@@ -18,6 +19,7 @@ export interface PostFollower {
     image?: string;
     like?: number;
     dislike?: number;
+    relio?: number;
     publication?: PublicationDate;
   }
 

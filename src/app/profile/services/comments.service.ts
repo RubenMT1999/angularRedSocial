@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment.prod";
-import {ArrayCommentsPost, Arrayprueba, CommentsInterface, CommentsPost} from "../interfaces/interfaceComments";
+import {
+  ArrayCommentsPost,
+  Arraylista,
+  Arrayprueba,
+  CommentsInterface,
+  CommentsPost, commentsUser
+} from "../interfaces/interfaceComments";
 import {catchError, map, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ArrayPostFollowers, PostFollower} from "../interfaces/interfacePost";
@@ -9,10 +15,16 @@ import {ArrayPostFollowers, PostFollower} from "../interfaces/interfacePost";
   providedIn: 'root'
 })
 export class CommentsService {
-  public arrayprueba!: Arrayprueba[];
+  public arrayprueba!: Arrayprueba;
 
   public commentsPosts!: CommentsPost[];
 
+  public commentsUser: any;
+
+
+  get posts(){
+    return this.commentsUser
+  }
 
 
   private baseUrl: string = environment.baseUrl;
@@ -53,13 +65,13 @@ export class CommentsService {
     const url = `${this.baseUrl}/comments/post`;
     const body = {id_post};
 
-    return this.http.post<Arrayprueba>(url,body)
+    return this.http.post<commentsUser>(url,body)
       .pipe(
         map(resp => {
 
-          this.arrayprueba = resp.datos!;
+          this.commentsUser = resp;
 
-          return resp.datos?.length != 0
+          return true;
         }),
         catchError(err => of(false))
       );
