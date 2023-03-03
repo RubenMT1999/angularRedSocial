@@ -17,6 +17,21 @@ export interface PostLike{
    resultado?: string;
 }
 
+export interface PostRelioMostrar{
+  id_user?: string;
+  mensaje?: string;
+  imagen?: string;
+  fecha_publicacion?: DateOfBirth
+}
+
+export interface Publicacion{
+  publicacion?: PostRelioMostrar[];
+}
+
+export interface PostRelio{
+  resultado?: string;
+}
+
 //quicktype
 export interface ObtenerProfile {
     userProfile: UserObtener[];

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { PostFollower } from './../interfaces/interfacePost';
 import { environment } from '../../../environments/environment.prod';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {PostLike, ProfileStatus} from '../interfaces/interfaceProfile';
+import {PostLike, PostRelio, ProfileStatus} from '../interfaces/interfaceProfile';
 import { catchError, map, of } from 'rxjs';
 import { PostsUsers, ArrayPostUsers, PostStatus, ArrayPostFollowers } from '../interfaces/interfacePost';
 
@@ -53,6 +53,22 @@ export class PostService {
       )
   }
 
+  crearRelio(id_post?: number){
+    const url = `${this.baseUrl}/post/addrelio`;
+    const body = {id_post};
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '');
+
+    return this.http.post<PostRelio>(url,body,{headers})
+      .pipe(
+        map(resp => {
+          console.log(resp);
+          return resp.resultado != null;
+        }),
+        catchError(err => of(false))
+      )
+  }
+
   crearDisLike(id_post?: number){
     const url = `${this.baseUrl}/post/addDislike`;
     const body = {id_post};
@@ -84,6 +100,9 @@ export class PostService {
         catchError(err => of(false))
       );
   }
+
+
+
 
     obtenerPostsFollowers(email?: string){
     const url = `${this.baseUrl}/post/user`;

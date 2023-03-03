@@ -3,6 +3,7 @@ import { AuthService } from './../../../auth/services/auth.service';
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommentsService} from "../../../profile/services/comments.service";
+import {ProfileService} from "../../../profile/services/profile.service";
 
 @Component({
   selector: 'app-posts-section',
@@ -31,11 +32,14 @@ export class PostsSectionComponent {
 
   ngOnInit() {
     this.listarPost();
+
   }
 
   get obtenerCommentsPost(){
     return this.commentsService.commentsPosts;
   }
+
+
 
   get obtenerPostFollowers(){
     return this.postService.usuarioPostsFollower;
@@ -56,6 +60,8 @@ export class PostsSectionComponent {
       })
   }
 
+
+
   // listaComments(variable: number){
   //     this.commentsService.obtenerCommentsPost(variable)
   //       .subscribe(resp=>{
@@ -65,6 +71,16 @@ export class PostsSectionComponent {
   postLike(id: number) {
     this.postService.crearLike(id)
       .subscribe(resp => {
+        if(resp){
+          this.ngOnInit();
+        }else{
+        }
+      })
+  }
+
+  postRelio(id: number){
+    this.postService.crearRelio(id)
+      .subscribe(resp=>{
         if(resp){
           this.ngOnInit();
         }else{

@@ -1,8 +1,16 @@
 import { map, catchError, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { UserProfile, ProfileStatus, ObtenerProfile, DateOfBirth } from './../interfaces/interfaceProfile';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {
+  UserProfile,
+  ProfileStatus,
+  ObtenerProfile,
+  DateOfBirth,
+  Publicacion,
+  PostRelio, PostRelioMostrar
+} from './../interfaces/interfaceProfile';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
+import {ArrayPostUsers, PostsUsers} from "../interfaces/interfacePost";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +20,8 @@ export class ProfileService {
   private baseUrl: string = environment.baseUrl;
 
   public userProfile!: UserProfile;
+
+  public postRelios!: PostRelioMostrar[];
 
   public perfilesBuscados!: UserProfile[];
 
@@ -41,6 +51,22 @@ export class ProfileService {
             }),
             catchError(err => of(false))
           )
+  }
+
+  obtenerRelio(){
+    const url = `${this.baseUrl}/post/mostrarRelio`;
+    //const body = {email};
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '');
+    return this.http.post<Publicacion>(url,{},{headers})
+      .pipe(
+        map(resp => {
+          this.postRelios = resp.publicacion!;
+
+          return resp.publicacion?.length != 0
+        }),
+        catchError(err => of(false))
+      );
   }
 
 
