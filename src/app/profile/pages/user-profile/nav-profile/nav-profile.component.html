@@ -14,7 +14,7 @@
       <hr class="mt-4 dark:opacity-40">
 
       <div class="mt-4">
-          <p class="opacity-80"> {{ obtenerProfile.bio }} </p>
+          <p class="opacity-80 text-white"> {{ obtenerProfile.bio }} </p>
       </div>
 
       <div class="mt-4">
@@ -25,11 +25,11 @@
       </div>
 
       <div class="flex flex-row mt-4 gap-4">
-          <p>nº seguiendo</p>
-          {{obtenerSeguidores!.userSeguidores[0]}}
+          <p class="opacity-80 text-white">{{obtenerSeguidores!.userSeguidores[0]}} seguiendo</p>
 
-        <p>nº seguidores</p>
-      {{obtenerSeguidores!.userSeguidores[1]}}
+
+        <p class="opacity-80 text-white">{{obtenerSeguidores!.userSeguidores[1]}} seguidores</p>
+
 
 
     </div>
