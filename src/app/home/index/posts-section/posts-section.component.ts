@@ -29,6 +29,7 @@ export class PostsSectionComponent implements OnInit{
 
   public someValue:string= '';
   public someComentario:string= '';
+  public email: string = this.authService.usuario.username!;
 
   ngOnInit() {
     this.listarPost();
@@ -96,6 +97,7 @@ export class PostsSectionComponent implements OnInit{
   comentariosDisponible(id: number){
     this.commentsService.obtenerCommentsPost(id)
       .subscribe(resp=>{
+        this.ngOnInit();
       })
     this.someComentario = '';
     this.numero = id;

@@ -26,24 +26,13 @@ export class ProfileService {
 
   public usersSeguidores?: userSeguidores;
 
-
-
-
-
-
-
   get profile(){
     return this.userProfile;
   }
 
-
   get users(){
     return this.usersSeguidores
   }
-
-
-
-
 
   get buscados(){
     return this.perfilesBuscados;

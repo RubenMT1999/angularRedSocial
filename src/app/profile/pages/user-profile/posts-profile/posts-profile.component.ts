@@ -105,6 +105,16 @@ export class PostsProfileComponent {
       })
   }
 
+  postRelio(id: number){
+    this.postService.crearRelio(id)
+      .subscribe(resp=>{
+        if(resp){
+          this.ngOnInit();
+        }else{
+        }
+      })
+  }
+
   postDisLike(id: number){
     const usermail = this.authService.usuario.username!;
     this.postService.crearDisLike(id)

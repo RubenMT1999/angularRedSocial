@@ -26,10 +26,14 @@ export interface PostLike{
 }
 
 export interface PostRelioMostrar{
+  id?: number;
   id_user?: string;
   mensaje?: string;
   imagen?: string;
-  fecha_publicacion?: DateOfBirth
+  fecha_publicacion?: DateOfBirth;
+  relio?: number;
+  like?: number;
+  dislike?: number;
 }
 
 export interface Publicacion{

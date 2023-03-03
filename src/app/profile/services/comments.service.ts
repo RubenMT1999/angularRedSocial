@@ -40,6 +40,7 @@ export class CommentsService {
         map(resp => {
           this.commentsPosts = resp.commentsUser!;
           return resp.commentsUser?.length != 0
+
         }),
         catchError(err => of(false))
       );

@@ -8,6 +8,7 @@ export interface CommentsPost{
   text?:string;
   email?:string;
   id_post?: number;
+  perfil?: string;
   date_comments?: PublicationDate;
  }
 
