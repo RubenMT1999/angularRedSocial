@@ -1,6 +1,6 @@
 import { PostService } from './../../../profile/services/post.service';
 import { AuthService } from './../../../auth/services/auth.service';
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommentsService} from "../../../profile/services/comments.service";
 import {ProfileService} from "../../../profile/services/profile.service";
@@ -10,7 +10,7 @@ import {ProfileService} from "../../../profile/services/profile.service";
   templateUrl: './posts-section.component.html',
   styleUrls: ['./posts-section.component.css']
 })
-export class PostsSectionComponent {
+export class PostsSectionComponent OnInit{
   public like:boolean = false;
   public comentario: boolean = false;
   public numero: number = 0;
@@ -32,14 +32,11 @@ export class PostsSectionComponent {
 
   ngOnInit() {
     this.listarPost();
-
   }
 
   get obtenerCommentsPost(){
     return this.commentsService.commentsPosts;
   }
-
-
 
   get obtenerPostFollowers(){
     return this.postService.usuarioPostsFollower;
@@ -59,8 +56,6 @@ export class PostsSectionComponent {
         console.log(this.obtenerCommentsPost);
       })
   }
-
-
 
   // listaComments(variable: number){
   //     this.commentsService.obtenerCommentsPost(variable)

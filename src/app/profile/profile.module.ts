@@ -8,6 +8,10 @@ import { ProfileSettingsComponent } from './pages/user-profile/profile-settings/
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { NavProfileComponent } from './pages/user-profile/nav-profile/nav-profile.component';
 import { PostsProfileComponent } from './pages/user-profile/posts-profile/posts-profile.component';
+import { SiguiendoComponent } from './pages/search-user/siguiendo/siguiendo.component';
+import { SeguidoresComponent } from './pages/search-user/seguidores/seguidores.component';
+import { PostsSearchComponent } from './pages/search-user/posts-search/posts-search.component';
+import {SearchUserComponent} from "./pages/search-user/search-user.component";
 
 
 @NgModule({
@@ -15,7 +19,11 @@ import { PostsProfileComponent } from './pages/user-profile/posts-profile/posts-
     UserProfileComponent,
     ProfileSettingsComponent,
     NavProfileComponent,
-    PostsProfileComponent
+    PostsProfileComponent,
+    SearchUserComponent,
+    SiguiendoComponent,
+    SeguidoresComponent,
+    PostsSearchComponent
   ],
   imports: [
     CommonModule,

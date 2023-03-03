@@ -1,12 +1,11 @@
-import { map, catchError, of } from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map, catchError, of, Observable} from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   UserProfile,
   ProfileStatus,
   ObtenerProfile,
   DateOfBirth,
-  Publicacion,
-  PostRelio, PostRelioMostrar
+  userSeguidores,
 } from './../interfaces/interfaceProfile';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -25,9 +24,26 @@ export class ProfileService {
 
   public perfilesBuscados!: UserProfile[];
 
+  public usersSeguidores?: userSeguidores;
+
+
+
+
+
+
+
   get profile(){
     return this.userProfile;
   }
+
+
+  get users(){
+    return this.usersSeguidores
+  }
+
+
+
+
 
   get buscados(){
     return this.perfilesBuscados;
@@ -96,6 +112,57 @@ export class ProfileService {
             catchError(err => of(true))
           )
   }
+
+
+
+
+  getUser(){
+    const url = `${this.baseUrl}/profile/follow`;
+    const headers = new HttpHeaders().set('Authorization', localStorage.getItem('token') || '');
+    return this.http.post<userSeguidores>(url,{},{headers})
+      .pipe(
+        map(resp => {
+          this.usersSeguidores = resp;
+          // this.usersSeguidores.sigo = resp.sigo;
+          // this.usersSeguidores.meSiguen = resp.meSiguen;
+
+
+          return true;
+
+        }),
+        catchError(err => of(true))
+
+      )
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+  getFollows(token: string): Observable <any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    const url = `${this.baseUrl}/profile/follow`;
+    return this.http.post<any>(url, null, { headers });
+  }
+
+
+
+
+
+
+
+
+
 
 
   buscarUsuarios(username : string){
