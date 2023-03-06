@@ -92,10 +92,8 @@ export class PostsProfileComponent {
       .subscribe(resp => {
         this.ngOnInit();
       })
-
   }
   postLike(id: number) {
-    const usermail = this.authService.usuario.username!;
     this.postService.crearLike(id)
       .subscribe(resp => {
         if(resp){
@@ -116,7 +114,6 @@ export class PostsProfileComponent {
   }
 
   postDisLike(id: number){
-    const usermail = this.authService.usuario.username!;
     this.postService.crearDisLike(id)
       .subscribe(resp => {
         if(resp){

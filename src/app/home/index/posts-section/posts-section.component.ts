@@ -74,6 +74,15 @@ export class PostsSectionComponent implements OnInit{
       })
   }
 
+
+
+  borrarComments(id: number) {
+    this.commentsService.borrarComments(id)
+      .subscribe(resp => {
+        this.ngOnInit();
+      })
+  }
+
   postRelio(id: number){
     this.postService.crearRelio(id)
       .subscribe(resp=>{

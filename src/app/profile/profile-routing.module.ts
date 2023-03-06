@@ -11,6 +11,7 @@ import {SearchUserComponent} from "./pages/search-user/search-user.component";
 import {SiguiendoComponent} from "./pages/search-user/siguiendo/siguiendo.component";
 import {SeguidoresComponent} from "./pages/search-user/seguidores/seguidores.component";
 import {PostsSearchComponent} from "./pages/search-user/posts-search/posts-search.component";
+import {ProfileRelioComponent} from "./pages/user-profile/profile-relio/profile-relio.component";
 
 const routes: Routes = [
   {
@@ -23,8 +24,9 @@ const routes: Routes = [
           { path: 'seguidores', component: SeguidoresComponent }
         ] },
       {path:'user', component: UserProfileComponent, children: [
-        { path: '', component: PostsProfileComponent},       
+        { path: '', component: PostsProfileComponent},
         { path: 'settings', component: ProfileSettingsComponent},
+          {path: 'relio', component: ProfileRelioComponent}
       ]},
       {path: '**', redirectTo:''}
     ]

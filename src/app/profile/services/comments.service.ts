@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment.prod";
-import { CommentsInterface, CommentsPost, commentsUser} from "../interfaces/interfaceComments";
+import {CommentsInterface, CommentsPost, commentsStatus, commentsUser} from "../interfaces/interfaceComments";
 import {catchError, map, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {ArrayPostFollowers, PostFollower} from "../interfaces/interfacePost";
+import {ArrayPostFollowers, PostFollower, PostStatus} from "../interfaces/interfacePost";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,22 @@ export class CommentsService {
         }),
         catchError(err => of(false))
       )
+  }
+
+  borrarComments(id: number) {
+    const url = `${this.baseUrl}/comments/delete`;
+    const options = {
+      body: {
+        id: id
+      }
+    };
+    return this.http.delete<commentsStatus>(url, options)
+      .pipe(
+        map(resp => {
+          return resp.status == 'Comentario Eliminado'
+        }),
+        catchError(err => of(false))
+      );
   }
 
   obtenerCommentsPost(id_post?: number){
