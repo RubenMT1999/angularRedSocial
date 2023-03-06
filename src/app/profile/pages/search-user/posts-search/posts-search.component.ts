@@ -7,12 +7,12 @@ import { ProfileService } from 'src/app/profile/services/profile.service';
   templateUrl: './posts-search.component.html',
   styleUrls: ['./posts-search.component.css']
 })
-export class PostsSearchComponent implements OnInit{
+export class PostsSearchComponent{
 
-  constructor(private postService: PostService, 
+  constructor(private postService: PostService,
     private profileService: ProfileService){}
 
-  postsSearch = [] 
+  postsSearch = []
 
 
   get obtenerProfile(){
@@ -20,12 +20,6 @@ export class PostsSearchComponent implements OnInit{
   }
 
 
-  ngOnInit(): void {
-    this.postService.obtenerPostsSearch('pepefg').subscribe(
-      resp => {
-        
-        console.log('esto es ' + resp)
-      })
-  }
+
 
 }

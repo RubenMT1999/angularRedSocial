@@ -37,7 +37,7 @@ export interface PostRelioMostrar{
   id_user?: string;
   mensaje?: string;
   imagen?: string;
-  fecha_publicacion?: DateOfBirth;
+  fecha_Publicacion?: DateOfBirth;
   relio?: number;
   like?: number;
   dislike?: number;
