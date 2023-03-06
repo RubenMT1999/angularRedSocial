@@ -5,11 +5,12 @@ import {
   ProfileStatus,
   ObtenerProfile,
   DateOfBirth,
-  userSeguidores, PostRelioMostrar, Publicacion,
+  userSeguidores, PostRelioMostrar, Publicacion, numero,
 } from './../interfaces/interfaceProfile';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import {ArrayPostUsers, PostsUsers} from "../interfaces/interfacePost";
+import {ArrayVeces} from "./../interfaces/interfaceProfile";
 
 @Injectable({
   providedIn: 'root'
@@ -22,28 +23,19 @@ export class ProfileService {
 
   public postRelios!: PostRelioMostrar[];
 
+  public numerorelios!: ArrayVeces;
+
   public perfilesBuscados!: UserProfile[];
 
   public usersSeguidores?: userSeguidores;
-
-
-
-
-
-
 
   get profile(){
     return this.userProfile;
   }
 
-
   get users(){
     return this.usersSeguidores
   }
-
-
-
-
 
   get buscados(){
     return this.perfilesBuscados;
@@ -80,6 +72,22 @@ export class ProfileService {
           this.postRelios = resp.publicacion!;
 
           return resp.publicacion?.length != 0
+        }),
+        catchError(err => of(false))
+      );
+  }
+
+  obtenerNumeroRelio(){
+    const url = `${this.baseUrl}/relio/user`;
+    //const body = {email};
+    const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '');
+    return this.http.post<ArrayVeces>(url,{},{headers})
+      .pipe(
+        map(resp => {
+          this.numerorelios = resp;
+
+          return true;
         }),
         catchError(err => of(false))
       );

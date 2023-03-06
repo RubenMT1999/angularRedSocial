@@ -13,6 +13,7 @@ import { SiguiendoComponent } from './pages/search-user/siguiendo/siguiendo.comp
 import { SeguidoresComponent } from './pages/search-user/seguidores/seguidores.component';
 import { PostsSearchComponent } from './pages/search-user/posts-search/posts-search.component';
 import { ChatUserComponent } from './pages/search-user/chat-user/chat-user.component';
+import { ProfileRelioComponent } from './pages/user-profile/profile-relio/profile-relio.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ChatUserComponent } from './pages/search-user/chat-user/chat-user.compo
     SiguiendoComponent,
     SeguidoresComponent,
     PostsSearchComponent,
-    ChatUserComponent
+    ChatUserComponent,
+    ProfileRelioComponent
   ],
   imports: [
     CommonModule,

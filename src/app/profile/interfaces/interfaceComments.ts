@@ -5,9 +5,11 @@ export interface CommentsInterface{
 }
 
 export interface CommentsPost{
+  id?:number;
   text?:string;
   email?:string;
   id_post?: number;
+  perfil?: string;
   date_comments?: PublicationDate;
  }
 
@@ -23,4 +25,8 @@ export interface Arrayprueba  {
 
 export interface commentsUser{
   commentsUser?: CommentsPost[];
+}
+
+export interface commentsStatus {
+  status?: string;
 }

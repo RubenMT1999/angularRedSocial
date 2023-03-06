@@ -24,12 +24,23 @@ export interface PostDisLike{
 export interface PostLike{
   resultado?: string;
 }
+export interface ArrayVeces{
+  veces?: number;
+}
+export interface numero{
+  numeroRelio?: ArrayVeces[];
+}
+
 
 export interface PostRelioMostrar{
+  id?: number;
   id_user?: string;
   mensaje?: string;
   imagen?: string;
-  fecha_publicacion?: DateOfBirth
+  fecha_publicacion?: DateOfBirth;
+  relio?: number;
+  like?: number;
+  dislike?: number;
 }
 
 export interface Publicacion{

@@ -29,6 +29,7 @@ export class PostsSectionComponent implements OnInit{
 
   public someValue:string= '';
   public someComentario:string= '';
+  public email: string = this.authService.usuario.username!;
 
   ngOnInit() {
     this.listarPost();
@@ -73,6 +74,15 @@ export class PostsSectionComponent implements OnInit{
       })
   }
 
+
+
+  borrarComments(id: number) {
+    this.commentsService.borrarComments(id)
+      .subscribe(resp => {
+        this.ngOnInit();
+      })
+  }
+
   postRelio(id: number){
     this.postService.crearRelio(id)
       .subscribe(resp=>{
@@ -96,6 +106,7 @@ export class PostsSectionComponent implements OnInit{
   comentariosDisponible(id: number){
     this.commentsService.obtenerCommentsPost(id)
       .subscribe(resp=>{
+        this.ngOnInit();
       })
     this.someComentario = '';
     this.numero = id;

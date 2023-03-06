@@ -103,20 +103,7 @@ export class PostService {
       );
   }
 
-  obtenerPostsSearch(twitterUsername?: string){
-    const url = `${this.baseUrl}/post/user/search`;
-    const body = {twitterUsername};
 
-    return this.http.post<ArrayPostUsers>(url,body)
-      .pipe(
-        map(resp => {
-          this.usuarioPosts = resp.userPosts!;
-
-          return resp.userPosts?.length != 0
-        }),
-        catchError(err => of(false))
-      );
-  }
 
 
     obtenerPostsFollowers(email?: string){

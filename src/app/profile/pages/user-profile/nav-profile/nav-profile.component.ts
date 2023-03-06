@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
+import {getUndecoratedClassWithAngularFeaturesDiagnostic} from "@angular/compiler-cli/src/ngtsc/annotations/common";
 
 
 
@@ -14,11 +15,13 @@ import {environment} from "../../../../../environments/environment";
 })
 export class NavProfileComponent implements OnInit{
 
+  public numero = false;
 
 
-
-  ngOnInit(): void {
+  ngOnInit(){
     this.obtenerMisSeguidores();
+    this.listarPostRelio();
+    this.oneditNumero();
   }
 
 
@@ -35,11 +38,6 @@ export class NavProfileComponent implements OnInit{
     return this.authService.usuario;
   }
 
-
-
-
-
-
   constructor(private profileService: ProfileService,
               private authService: AuthService,
               private route: ActivatedRoute,
@@ -52,11 +50,40 @@ export class NavProfileComponent implements OnInit{
     // this.router.navigateByUrl('setting')
   }
 
+  onRelio() {
+    this.router.navigateByUrl('/profile/user/relio')
+  }
+  onPerfil(){
+    this.router.navigateByUrl('/profile/user')
+  }
+  oneditNumero(){
+    if(this.obtenerRelioPost.length != 0){
+      this.numero = true;
+      }
+    }
+
+  get obtenerNumero(){
+    return this.profileService.numerorelios;
+  }
+  get obtenerRelioPost(){
+    return this.profileService.postRelios;
+  }
+
+  listarPostRelio(){
+
+    this.profileService.obtenerRelio()
+      .subscribe(resp =>{
+        console.log(this.obtenerNumero);
+      })
+  }
+
+
 
 
   obtenerMisSeguidores(){
 
     this.profileService.getUser().subscribe(resp => {
+      console.log(this.obtenerNumero.veces)
 
     });
 
