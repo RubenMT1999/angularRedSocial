@@ -18,3 +18,8 @@ export interface Usuario {
 export interface RegistroStatus {
     status?: string;
 }
+
+export interface RespuestaLoginGoogle {
+    email?: string;
+    password?: string;
+}

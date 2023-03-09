@@ -22,6 +22,12 @@ const routes: Routes = [
     canLoad: [ValidarTokenGuard]
   },
   {
+    path:'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+    canActivate: [ValidarTokenGuard,ObtenerProfileGuard],
+    canLoad: [ValidarTokenGuard]
+  },
+  {
     path:'**',
     redirectTo:'auth'
   }

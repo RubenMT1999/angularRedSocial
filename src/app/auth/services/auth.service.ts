@@ -1,8 +1,9 @@
-import { AuthResponse, RenovarToken, Usuario, RegistroStatus } from './../interfaces/interfaces';
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, of, tap, Observable, firstValueFrom } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+import { AuthResponse, RegistroStatus, RenovarToken, RespuestaLoginGoogle, Usuario } from './../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +74,14 @@ export class AuthService {
         }),
         catchError(err => of(false))
       )
+  }
+
+  googleSignIn(token: string){
+    const url = `${this.baseUrl}/login/google`;
+    const body = {token};
+
+    return this.http.post<RespuestaLoginGoogle>(url,body)
+    
   }
 
 

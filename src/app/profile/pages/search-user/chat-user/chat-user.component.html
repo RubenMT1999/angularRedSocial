@@ -1,0 +1,46 @@
+
+<div class="flex flex-col mt-12 w-[800px] p-4 rounded-lg dark:bg-[#191919]" >
+
+    <div  *ngFor="let mensaje of todosLosMensajes; let i = index">
+        
+        <div class="chat chat-end" *ngIf="this.elMensajeEsMio(todosLosMensajes[i].texto) == true; else elseBlock">
+            <div class="chat-image avatar">
+                <div class="w-10 rounded-full">
+                    <img src="../../../../../assets/avatar-2.png" />
+                </div>
+            </div>
+            <div class="chat-header">
+                <p class="text-md dark:text-white opacity-70"> {{obtenerProfile.username}} </p> 
+            </div>
+            <div class="chat-bubble">{{todosLosMensajes[i].texto}}</div>
+            <div class="chat-footer opacity-50 dark:text-white">
+                {{todosLosMensajes[i].creation_date.date | date:'medium'}}
+            </div>
+        </div>
+        
+        <ng-template class="chat chat-start" #elseBlock>
+            <div class="chat-image avatar">
+            <div class="w-10 rounded-full">
+                <img src="../../../../../assets/avatar-icon.jpg" />
+            </div>
+            </div>
+            <div class="chat-header">
+                <p class="text-md dark:text-white opacity-70">{{this.obtenerBuscados[0].username}}</p>
+            </div>
+            <div class="chat-bubble">{{todosLosMensajes[i].texto}}</div>
+            <div class="chat-footer opacity-50 dark:text-white">
+                {{todosLosMensajes[i].creation_date.date | date:'medium'}}
+            </div>
+        </ng-template>
+
+    </div>
+    
+
+
+</div>
+
+
+<form  autocomplete="off" (ngSubmit)="crearMensaje()" class="flex flex-row gap-3 mt-6 w-[800px] p-4 rounded-lg dark:bg-[#191919]">
+    <input type="text" name="termino" placeholder="Escribe tu mensaje..." class="input input-bordered w-full dark:bg-opacity-20 dark:placeholder:text-white dark:placeholder:text-opacity-40 text-white" [(ngModel)]="mensajeEnviado"/>
+    <button type="submit" class="btn ">Enviar</button>
+</form>
